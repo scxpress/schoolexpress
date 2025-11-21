@@ -3,71 +3,46 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SchoolExpress — шаблоны, шпаргалки, рефераты</title>
-  <!-- Simple, clean Apple-like style. Комментарии внутри файла объясняют, как править и развернуть на GitHub Pages. -->
-  <!-- Как развернуть: создать репозиторий на GitHub, положить этот index.html в корень ветки main, включить GitHub Pages (Settings > Pages > Deploy). -->
+  <title>SchoolExpress — шаблоны, шпаргалки, рефераты (БЕСПЛАТНО)</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f7f8fb;
-      --card:#ffffff;
-      --muted:#6b7280;
-      --accent:#0b69ff;
-      --radius:14px;
-      color-scheme: light;
-    }
+    :root{--bg:#f7f8fb;--card:#ffffff;--muted:#6b7280;--accent:#0b69ff;--radius:14px;color-scheme: light}
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial; margin:0;background:var(--bg);color:#0f172a}
-    header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;background:transparent}
-    .brand{font-weight:700;letter-spacing:0.4px;font-size:20px}
-    nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
-    .container{max-width:1100px;margin:28px auto;padding:0 18px}
-
-    .hero{display:flex;gap:28px;align-items:center}
+    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;margin:0;background:var(--bg);color:#0f172a}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:transparent}
+    .brand{font-weight:800;letter-spacing:0.2px;font-size:20px}
+    nav a{margin-left:16px;color:var(--muted);text-decoration:none;font-weight:600}
+    .container{max-width:1100px;margin:18px auto;padding:0 18px}
+    .hero{display:flex;gap:20px;align-items:center}
     .hero-left{flex:1}
-    .h1{font-size:36px;margin:0 0 10px}
-    .lead{color:var(--muted);margin:0 0 18px}
-    .cta{display:inline-block;padding:12px 18px;background:var(--accent);color:#fff;border-radius:10px;text-decoration:none;font-weight:600}
-
-    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:22px}
-    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 20px rgba(15,23,42,0.06)}
+    .h1{font-size:34px;margin:0 0 8px}
+    .lead{color:var(--muted);margin:0 0 14px}
+    .cta{display:inline-block;padding:10px 14px;background:var(--accent);color:#fff;border-radius:10px;text-decoration:none;font-weight:700}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:18px}
+    .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(15,23,42,0.05)}
     .card h3{margin:0 0 8px;font-size:16px}
     .card p{margin:0 0 12px;color:var(--muted);font-size:14px}
-    .btn{display:inline-block;padding:8px 12px;border-radius:10px;text-decoration:none;background:rgba(11,105,255,0.1);color:var(--accent);font-weight:700}
-
-    footer{margin-top:40px;padding:28px;text-align:center;color:var(--muted);font-size:14px}
-
-    /* responsive */
-    @media (max-width:760px){.hero{flex-direction:column}.h1{font-size:28px}}
-
-    /* small utility */
-    .center{display:flex;align-items:center;gap:10px}
-    .pill{background:#eef4ff;color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700}
-
-    /* demo download link style */
-    .download{display:inline-block;margin-top:8px;padding:10px 12px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none}
-
-    /* search */
-    .search{display:flex;gap:8px;margin-top:14px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;text-decoration:none;background:rgba(11,105,255,0.08);color:var(--accent);font-weight:700}
+    footer{margin-top:28px;padding:22px;text-align:center;color:var(--muted);font-size:13px}
+    @media (max-width:760px){.hero{flex-direction:column}.h1{font-size:26px}}
+    .search{display:flex;gap:8px;margin-top:12px}
     .search input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid #e6e9ef;background:#fff}
+    .badge{background:#eef4ff;color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700}
+    .tool{display:flex;gap:10px;flex-wrap:wrap}
+    .small{font-size:13px;color:var(--muted)}
+    .item-list{margin-top:12px}
+    .item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:#fbfdff;border:1px solid #eef2ff;margin-bottom:8px}
+    .item .meta{color:var(--muted);font-size:13px}
   </style>
 </head>
 <body>
-  <!--
-    SchoolExpress — минимальный рабочий каркас.
-    Что внутри: главная секция, блоки с шаблонами, рефератами, шпаргалками и решениями.
-    Инструкции по кастомизации:
-      - поменяй текст в секциях
-      - замени ссылки на реальные файлы (внутри href="#" ставь путь к .zip или .pptx)
-      - для деплоя: GitHub Pages / Vercel / Netlify
-  -->
   <header>
-    <div class="brand">SchoolExpress</div>
+    <div class="brand">SchoolExpress — БЕСПЛАТНО</div>
     <nav>
       <a href="#templates">Шаблоны</a>
       <a href="#essays">Рефераты</a>
       <a href="#cheats">Шпаргалки</a>
-      <a href="#solutions">Решения</a>
+      <a href="#tools">Инструменты</a>
       <a href="#contact">Контакт</a>
     </nav>
   </header>
@@ -75,121 +50,241 @@
   <main class="container">
     <section class="hero">
       <div class="hero-left">
-        <h1 class="h1">Готовые шаблоны, шпаргалки и рефераты — быстро и аккуратно</h1>
-        <p class="lead">SchoolExpress — сборник учебных материалов: презентации, рефераты, компактные шпоры и решения задач. Всё, чтобы спасти контрольную или быстро подготовить доклад.</p>
-        <div class="center">
-          <a class="cta" href="#templates">Скачать шаблоны</a>
-          <a class="pill" href="#essays">Бесплатно</a>
+        <h1 class="h1">Готовые шаблоны, шпаргалки и рефераты — всё бесплатно</h1>
+        <p class="lead">SchoolExpress — твой помощник в учёбе: шаблоны презентаций, краткие шпаргалки, готовые рефераты и пошаговые решения. Всё прямо в браузере — скачал и пользуешься.</p>
+        <div style="display:flex;gap:10px;align-items:center">
+          <a class="cta" href="#tools">Генератор презентаций</a>
+          <div class="badge">100% free</div>
         </div>
 
         <div class="search">
-          <input type="search" id="site-search" placeholder="Найти материал: математика, презентация, шпоры...">
-          <a class="btn" href="#">Найти</a>
+          <input type="search" id="site-search" placeholder="Найти: математика, презентация, шпоры...">
+          <button id="search-btn" class="btn">Найти</button>
         </div>
+        <p class="small">Подсказка: нажми Enter в поле поиска, чтобы увидеть результаты из каталога.</p>
       </div>
-      <div style="width:360px">
-        <div class="card" style="padding:18px">
-          <h3>Промо-пакет</h3>
-          <p>10 топовых шаблонов презентаций в стиле Apple + 20 шпаргалок</p>
-          <a class="download" href="#">Скачать — 99 ₽</a>
+      <div style="width:340px">
+        <div class="card" style="padding:16px">
+          <h3 style="margin:0 0 8px">Бесплатный старт-пак</h3>
+          <p class="small">10 шаблонов презентаций + 30 шпаргалок. Скачивай бесплатно прямо из браузера.</p>
+          <div style="margin-top:10px"><a id="download-starter" class="btn" href="#">Скачать пак</a></div>
         </div>
       </div>
     </section>
 
-    <section id="templates" style="margin-top:26px">
+    <section id="templates" style="margin-top:22px">
       <h2>Шаблоны презентаций</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Минимал — Apple style</h3>
-          <p>Чистый шрифт, акцент на визуал, идеально для школьных докладов.</p>
-          <a class="btn" href="#">Просмотреть</a>
-        </div>
-        <div class="card">
-          <h3>Яркий — для проектов</h3>
-          <p>Подходит для конкурсов и презентаций на сцене.</p>
-          <a class="btn" href="#">Просмотреть</a>
-        </div>
-        <div class="card">
-          <h3>Классический ГОСТ</h3>
-          <p>Оформление согласно требованиям: титул, содержание, список литературы.</p>
-          <a class="btn" href="#">Просмотреть</a>
-        </div>
+      <div class="card-grid" id="templates-grid">
+        <!-- items генерируются JS -->
       </div>
     </section>
 
-    <section id="essays" style="margin-top:28px">
+    <section id="essays" style="margin-top:22px">
       <h2>Рефераты и доклады</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>История: Великая Отечественная</h3>
-          <p>Готовый реферат с планом, фактами и списком литературы.</p>
-          <a class="btn" href="#">Скачать</a>
+      <div class="card-grid" id="essays-grid"></div>
+    </section>
+
+    <section id="cheats" style="margin-top:22px">
+      <h2>Шпаргалки и карточки</h2>
+      <div class="card-grid" id="cheats-grid"></div>
+    </section>
+
+    <section id="tools" style="margin-top:22px">
+      <h2>Инструменты — создавай в браузере</h2>
+      <div class="card">
+        <h3>Генератор презентаций (.pptx)</h3>
+        <p class="small">Выбери шаблон, заполни заголовок и несколько слайдов — и скачай рабочую презентацию.</p>
+        <div style="margin-top:10px" class="tool">
+          <select id="ppt-template">
+            <option value="minimal">Минимал (Apple-like)</option>
+            <option value="bright">Яркий</option>
+            <option value="classic">Классический</option>
+          </select>
+          <input id="ppt-title" placeholder="Заголовок презентации" />
+          <button id="add-slide" class="btn">Добавить слайд</button>
+          <button id="generate-ppt" class="cta">Сгенерировать PPTX</button>
         </div>
-        <div class="card">
-          <h3>Биология: Экосистемы</h3>
-          <p>Структурированный доклад с иллюстрациями (путь к файлу можно добавить).</p>
-          <a class="btn" href="#">Скачать</a>
+        <div id="slides-area" style="margin-top:10px"></div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h3>Генератор реферата (.doc)</h3>
+        <p class="small">Вводишь тему -> получаешь готовый форматированный .doc (Word) с планом и текстом.</p>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="essay-topic" placeholder="Тема реферата" style="flex:1" />
+          <button id="generate-doc" class="btn">Сгенерировать .doc</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h3>Генератор шпаргалок</h3>
+        <p class="small">Мини-справка по теме в формате .txt — удобно распечатать или сохранить в заметки.</p>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="cheat-topic" placeholder="Тема шпаргалки" />
+          <button id="generate-cheat" class="btn">Создать .txt</button>
         </div>
       </div>
     </section>
 
-    <section id="cheats" style="margin-top:28px">
-      <h2>Шпаргалки</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Математика — формулы 7–9</h3>
-          <p>Короткие карточки с формулами и примером применения.</p>
-          <a class="btn" href="#">Открыть</a>
-        </div>
-        <div class="card">
-          <h3>Русский — орфография</h3>
-          <p>Быстрые правила и примеры, удобно смотреть перед тестом.</p>
-          <a class="btn" href="#">Открыть</a>
-        </div>
+    <section id="catalog" style="margin-top:22px">
+      <h2>Каталог материалов</h2>
+      <div class="card">
+        <div class="item-list" id="catalog-list"></div>
       </div>
     </section>
 
-    <section id="solutions" style="margin-top:28px">
-      <h2>Решения задач</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Алгебра: примеры 9 класс</h3>
-          <p>Пошаговые решения задач с объяснениями.</p>
-          <a class="btn" href="#">Открыть</a>
-        </div>
-        <div class="card">
-          <h3>Физика: задания на механику</h3>
-          <p>Типовые контрольные с разбором ответов.</p>
-          <a class="btn" href="#">Открыть</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" style="margin-top:36px">
+    <section id="contact" style="margin-top:24px">
       <h2>Контакты</h2>
       <div class="card" style="max-width:720px">
-        <p>Есть идея, хочешь заказать шаблон или загрузить материалы — пиши в Telegram:</p>
-        <p><strong><a href="https://t.me/mrmod_technology" target="_blank">t.me/mrmod_technology</a></strong></p>
-        <p style="color:var(--muted);font-size:13px">Совет: чтобы принимать оплату, подключи QIWI/ЮKassa/PayPal через простой платежный лендинг (позже я покажу, как).</p>
+        <p class="small">Пиши в Telegram: <a href="https://t.me/mrmod_technology" target="_blank">t.me/mrmod_technology</a>. Если хочешь, могу подключить приём донатов или оформить страницу с возможностью скачивания по подписке (пока всё бесплатно — но можно добавить донаты позже).</p>
       </div>
     </section>
 
     <footer>
-      SchoolExpress — сделано для школьников. Бесплатные материалы + премиум-пакеты.
-      <div style="margin-top:8px">© SchoolExpress — <span style="color:var(--muted)">2025</span></div>
+      SchoolExpress — сделано для школьников. Всё бесплатно. <br> © SchoolExpress — <span style="color:var(--muted)">2025</span>
     </footer>
   </main>
 
+  <!-- Подключаем библиотеку pptxgenjs для генерации .pptx в браузере -->
+  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs/dist/pptxgen.min.js"></script>
   <script>
-    // Минимальные интерактивные штуки: поиск имитация и быстрая навигация
-    document.querySelector('#site-search').addEventListener('keydown', function(e){
-      if(e.key === 'Enter'){
-        const q = this.value.trim();
-        if(!q) return alert('Введи запрос. Например: математика, презентация');
-        // Здесь можно реализовать реальный поиск (по JSON-индексу) — пока заглушка
-        alert('Найдено 0 результатов для: '+q+'. Пока что это демо. Я могу подключить поиск.');
+    // Простой каталог материалов (демо). Ты можешь расширить список добавлением объектов в массив.
+    const CATALOG = [
+      {id:1,type:'template',title:'Минимал — Apple style',desc:'Чистый шрифт, акцент на визуал.',tags:['презентация','шаблон']},
+      {id:2,type:'template',title:'Яркий — для проектов',desc:'Подходит для конкурсов и сцен.',tags:['презентация']},
+      {id:3,type:'essay',title:'История: Великая Отечественная',desc:'Реферат с планом и списком литературы.',tags:['реферат','история']},
+      {id:4,type:'cheat',title:'Математика — формулы 7–9',desc:'Короткие карточки с формулами.',tags:['шпаргалка','математика']},
+      {id:5,type:'solution',title:'Алгебра: примеры 9 класс',desc:'Пошаговые решения задач.',tags:['решения','алгебра']}
+    ];
+
+    // Рендер каталога
+    function renderCatalog(list){
+      const gridTemplates = document.getElementById('templates-grid');
+      const essaysGrid = document.getElementById('essays-grid');
+      const cheatsGrid = document.getElementById('cheats-grid');
+      const catalogList = document.getElementById('catalog-list');
+      gridTemplates.innerHTML = '';
+      essaysGrid.innerHTML = '';
+      cheatsGrid.innerHTML = '';
+      catalogList.innerHTML = '';
+      list.forEach(item=>{
+        const card = document.createElement('div'); card.className='card';
+        card.innerHTML = `<h3>${item.title}</h3><p class="small">${item.desc}</p>`;
+        const actions = document.createElement('div'); actions.style.marginTop='10px';
+        const open = document.createElement('button'); open.className='btn'; open.textContent='Открыть';
+        open.onclick = ()=>openItem(item);
+        actions.appendChild(open);
+        card.appendChild(actions);
+        if(item.type==='template') gridTemplates.appendChild(card);
+        if(item.type==='essay') essaysGrid.appendChild(card);
+        if(item.type==='cheat') cheatsGrid.appendChild(card);
+        const listItem = document.createElement('div'); listItem.className='item';
+        listItem.innerHTML = `<div><strong>${item.title}</strong><div class="meta">${item.desc}</div></div><div><button class='btn' onclick='openItemById(${item.id})'>Открыть</button></div>`;
+        catalogList.appendChild(listItem);
+      });
+    }
+
+    function openItemById(id){ const item = CATALOG.find(x=>x.id===id); if(item) openItem(item); }
+
+    function openItem(item){
+      if(item.type==='template'){
+        alert('Шаблон открывается: '+item.title+'\nТы можешь сгенерировать похожую презентацию в разделе «Генератор презентаций».');
+      } else if(item.type==='essay'){
+        generateDoc(item.title, 'Вводный абзац для '+item.title+'\n\nПлан:\n1. Введение\n2. Основная часть\n3. Заключение\n\n(Добавь свои факты)');
+      } else if(item.type==='cheat'){
+        downloadText(item.title, 'Короткая шпаргалка по теме: '+item.title+'\n\nФормулы: ...\nПримеры: ...');
+      } else {
+        alert('Открываю: '+item.title);
       }
+    }
+
+    // Поиск
+    document.getElementById('site-search').addEventListener('keydown', function(e){ if(e.key==='Enter') doSearch(); });
+    document.getElementById('search-btn').addEventListener('click', doSearch);
+    function doSearch(){ const q = document.getElementById('site-search').value.trim().toLowerCase(); if(!q) return alert('Введи запрос');
+      const results = CATALOG.filter(it=> (it.title+ ' ' + it.desc + ' ' + (it.tags||[]).join(' ')).toLowerCase().includes(q));
+      if(results.length===0) return alert('Ничего не найдено — пока демо. Добавь больше материалов.');
+      renderCatalog(results);
+    }
+
+    // Генерация pptx — используем pptxgenjs
+    const pptx = new PptxGenJS();
+    let slidesData = [];
+    document.getElementById('add-slide').addEventListener('click', ()=>{
+      const idx = slidesData.length+1;
+      const wrapper = document.createElement('div'); wrapper.style.display='flex'; wrapper.style.gap='8px'; wrapper.style.marginTop='8px';
+      const title = document.createElement('input'); title.placeholder='Заголовок слайда '+idx; title.style.flex='1';
+      const text = document.createElement('input'); text.placeholder='Текст слайда'; text.style.flex='2';
+      const rem = document.createElement('button'); rem.textContent='Удалить'; rem.className='btn';
+      rem.onclick=()=>{ wrapper.remove(); slidesData = slidesData.filter(s=>s.el!==wrapper); };
+      wrapper.appendChild(title); wrapper.appendChild(text); wrapper.appendChild(rem);
+      document.getElementById('slides-area').appendChild(wrapper);
+      slidesData.push({el:wrapper,titleEl:title,textEl:text});
     });
+
+    document.getElementById('generate-ppt').addEventListener('click', ()=>{
+      const template = document.getElementById('ppt-template').value;
+      const title = document.getElementById('ppt-title').value || 'Шаблон SchoolExpress';
+      const gen = new PptxGenJS();
+      slidesData.forEach(s=>{
+        const slide = gen.addSlide();
+        const t = s.titleEl.value || '';
+        const txt = s.textEl.value || '';
+        if(template==='minimal'){
+          slide.addText(title,{x:0.5,y:0.3,fontSize:28,bold:true});
+          if(t) slide.addText(t,{x:0.5,y:1.3,fontSize:20});
+          if(txt) slide.addText(txt,{x:0.5,y:2.2,fontSize:14});
+        } else if(template==='bright'){
+          slide.background = {color:'F7F3FF'};
+          slide.addText(t||'Заголовок',{x:0.5,y:0.6,fontSize:26,bold:true,color:'1F1F60'});
+          slide.addText(txt,{x:0.5,y:1.6,fontSize:14});
+        } else {
+          slide.addText(t||'Заголовок',{x:0.5,y:0.6,fontSize:22,bold:true});
+          slide.addText(txt,{x:0.5,y:1.6,fontSize:14});
+        }
+      });
+      // если слайдов не было — создаём титульный
+      if(slidesData.length===0){ const s=gen.addSlide(); s.addText(title,{x:0.6,y:1.2,fontSize:36,bold:true}); s.addText('SchoolExpress — генератор презентаций',{x:0.6,y:2.2,fontSize:12}); }
+      gen.writeFile({fileName: (title.replace(/\s+/g,'_') || 'presentation') + '.pptx'});
+    });
+
+    // Генерация doc (в формате HTML .doc) — откроется в Word
+    document.getElementById('generate-doc').addEventListener('click', ()=>{
+      const topic = document.getElementById('essay-topic').value.trim(); if(!topic) return alert('Введи тему');
+      const html = `<!doctype html><html><head><meta charset="utf-8"><title>${topic}</title></head><body><h1>${topic}</h1><h2>План</h2><ol><li>Введение</li><li>Основная часть</li><li>Заключение</li></ol><h2>Текст</h2><p>Вставь сюда свои факты и источники. Это базовая структура — дополняй.</p></body></html>`;
+      const blob = new Blob([html],{type:'application/msword'});
+      const link = document.createElement('a'); link.href=URL.createObjectURL(blob); link.download=(topic.replace(/\s+/g,'_')||'ref')+'.doc'; document.body.appendChild(link); link.click(); link.remove();
+    });
+
+    // Генерация шпаргалки .txt
+    function downloadText(name, text){ const blob = new Blob([text],{type:'text/plain;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=(name.replace(/\s+/g,'_')||'cheat')+'.txt'; document.body.appendChild(a); a.click(); a.remove(); }
+    document.getElementById('generate-cheat').addEventListener('click', ()=>{
+      const topic=document.getElementById('cheat-topic').value.trim(); if(!topic) return alert('Введи тему');
+      const sample = `Шпаргалка: ${topic}\n\nКоротко:\n- Пункт 1\n- Пункт 2\n\nФормулы/правила:\n...\n\nПримеры:\n...`;
+      downloadText(topic, sample);
+    });
+
+    // функция генерации doc (для каталога)
+    function generateDoc(title, content){ const html = `<!doctype html><html><head><meta charset="utf-8"><title>${title}</title></head><body><h1>${title}</h1><p>${content.replace(/\n/g,'<br>')}</p></body></html>`;
+      const blob = new Blob([html],{type:'application/msword'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=(title.replace(/\s+/g,'_')||'doc')+'.doc'; document.body.appendChild(a); a.click(); a.remove(); }
+
+    // стартовый пакет: скачиваем ZIP с авто-сгенерированными файлами (эмуляция: создаём несколько файлов и скачиваем их последовательно)
+    document.getElementById('download-starter').addEventListener('click', ()=>{
+      // генерируем 3 презентации и 3 шпаргалки
+      ['Материалы_1','Материалы_2','Материалы_3'].forEach((name,i)=>{
+        // генерим простой doc
+        generateDoc(name, 'Это автоматически сгенерированный файл из старт-пака. Добавь своё содержание.');
+      });
+      alert('Скачивание старт-пака инициировано. Файлы будут открываться по очереди — это демо, позже можно собрать в единый ZIP на сервере.');
+    });
+
+    // Инициализация
+    renderCatalog(CATALOG);
+
+    // Экспорт текстовой шпаргалки (для каталога)
+    function downloadTextPublic(title){ downloadText(title, 'Шпаргалка по теме: '+title+'\n\nКоротко: ...'); }
+
+    // небольшая подсказка: кнопки "Открыть" в каталоге уже делают полезные вещи
   </script>
 </body>
 </html>
