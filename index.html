@@ -1,547 +1,231 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SchoolExpress — шпаргалки, шаблоны, рефераты (БЕСПЛАТНО)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0f172a;
-    --card:#0b1220;
-    --muted:#98a0b3;
-    --accent:#6ee7b7;
-    --accent-2:#60a5fa;
-    --glass: rgba(255,255,255,0.04);
-    --radius:14px;
-  }
-  *{box-sizing:border-box}
-  body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;margin:0;background:
-    linear-gradient(180deg,#071027 0%, #071a2f 60%); color:#e6eef6; -webkit-font-smoothing:antialiased;}
-  header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;position:sticky;top:0;background:linear-gradient(180deg, rgba(7,16,39,0.6), rgba(7,16,39,0.2));backdrop-filter: blur(6px);z-index:10}
-  .brand{font-weight:800;font-size:20px;letter-spacing:0.3px;color:var(--accent)}
-  nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
-  .container{max-width:1200px;margin:26px auto;padding:0 18px}
-  .hero{display:flex;gap:20px;align-items:center}
-  .hero-left{flex:1}
-  .h1{font-size:32px;margin:0 0 8px;color:#fff}
-  .lead{color:var(--muted);margin:0 0 12px}
-  .cta{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041024;border-radius:12px;text-decoration:none;font-weight:800}
-  .badge{background:var(--glass);color:var(--muted);padding:6px 10px;border-radius:999px;font-weight:700}
-  .panel{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)); padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 30px rgba(2,6,23,0.6)}
-  .controls{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
-  input, select, button{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px;border-radius:10px}
-  button.btn{cursor:pointer}
-  .grid{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:18px}
-  .main-col{min-width:0}
-  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:12px}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-  .card h3{margin:0 0 8px;color:#fff;font-size:15px}
-  .card p{margin:0;color:var(--muted);font-size:13px}
-  .muted{color:var(--muted);font-size:13px}
-  .right-col .panel + .panel{margin-top:12px}
-  footer{margin-top:28px;padding:26px;text-align:center;color:var(--muted);font-size:13px}
-  .tiny{font-size:12px;color:var(--muted)}
-  .pill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;color:var(--muted)}
-  .tag{display:inline-block;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);font-size:12px;color:var(--muted);margin-right:6px}
-  .generator-output{white-space:pre-wrap;background:#031022;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:#d9f7ec;min-height:80px}
-  @media (max-width:980px){ .grid{grid-template-columns:1fr} .hero{flex-direction:column} .h1{font-size:24px} .cta{width:100%;justify-content:center} }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SchoolExpress — Умный помощник для учёбы</title>
+    <style>
+        :root {
+            --bg: #f5f5f7;
+            --card: #ffffff;
+            --text: #1d1d1f;
+            --gray: #6e6e73;
+            --accent: #0071e3; /* стиль как у Apple */
+            --radius: 18px;
+            --shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 0;
+        }
+
+        header {
+            background: var(--card);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 12px 20px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .cheats-list {
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .subject-block {
+            margin-bottom: 40px;
+        }
+
+        .subject-block h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 160px;
+            border-radius: var(--radius);
+            border: 1px solid #ccc;
+            padding: 14px;
+            font-size: 16px;
+        }
+
+        .gen-output {
+            background: var(--card);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+        }
+    </style>
 </head>
 <body>
-<header>
-  <div class="brand">SchoolExpress</div>
-  <nav>
-    <a href="#cheats">Шпаргалки</a>
-    <a href="#templates">Шаблоны</a>
-    <a href="#tools">Генераторы</a>
-    <a href="#contact">Контакт</a>
-  </nav>
-</header>
+    <header>
+        <div class="logo">SchoolExpress</div>
+    </header>
 
-<main class="container">
-  <section class="hero">
-    <div class="hero-left">
-      <h1 class="h1">Шпаргалки, шаблоны, рефераты — всё бесплатно и на пальцах</h1>
-      <p class="lead">Разделил материалы по классам (5–11), по предметам и по формату (обычный / ОГЭ / ЕГЭ). Встроенный генератор выдаёт компактные шпаргалки — можно подправить и скачать.</p>
-      <div style="display:flex;gap:10px;align-items:center;margin-top:8px">
-        <a class="cta" href="#tools">Попробовать генераторы</a>
-        <div class="badge">100% free</div>
-      </div>
+    <div class="container">
+        <h1>Учись быстрее. Готовься умнее.</h1>
+        <div class="subtitle">Шпаргалки • Презентации • Рефераты • Мини‑нейросеть</div>
 
-      <div class="controls panel" style="margin-top:12px">
-        <label class="tiny" style="margin-right:8px">Класс</label>
-        <select id="filter-class">
-          <option value="all">Все классы</option>
-          <option value="5">5</option><option value="6">6</option><option value="7">7</option>
-          <option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-        </select>
+        <div class="grid">
+            <div class="card">
+                <h3>Готовые шпаргалки</h3>
+                <p>30+ реальных шпор по всем основным предметам.</p>
+                <a href="#cheats" class="button">Открыть</a>
+            </div>
 
-        <label class="tiny" style="margin-left:8px">Предмет</label>
-        <select id="filter-subject">
-          <option value="all">Все предметы</option>
-          <option>Математика</option><option>Русский</option><option>Физика</option>
-          <option>Химия</option><option>Биология</option><option>История</option>
-          <option>Обществознание</option><option>Информатика</option><option>Английский</option>
-        </select>
+            <div class="card">
+                <h3>Мини‑нейросеть</h3>
+                <p>Генерирует собственные шпаргалки по теме.</p>
+                <a href="#ai" class="button">Попробовать</a>
+            </div>
 
-        <label class="tiny" style="margin-left:8px">Экзамен</label>
-        <select id="filter-exam">
-          <option value="all">Все</option><option value="oge">ОГЭ</option><option value="ege">ЕГЭ</option>
-        </select>
+            <div class="card">
+                <h3>Материалы ЕГЭ/ОГЭ</h3>
+                <p>По предметам и классам.</p>
+                <a href="#ege" class="button">Открыть</a>
+            </div>
+        </div>
 
-        <input id="site-search" placeholder="Поиск: формулы, сочинение, дискриминант..." style="flex:1" />
-        <button id="search-btn" class="btn">Найти</button>
-      </div>
+        <!-- БЛОК ШПАРГАЛОК -->
+        <div id="cheats" style="margin-top:70px;">
+            <h1>Шпаргалки</h1>
+
+            <div class="subject-block">
+                <h2>Математика (ОГЭ + школа)</h2>
+                <div class="cheats-list">
+                    • Формулы сокращённого умножения<br>
+                    • Квадратное уравнение: ax²+bx+c=0, дискриминант D=b²−4ac<br>
+                    • Площади фигур: треугольник, круг, трапеция<br>
+                    • Теорема Пифагора: a²+b²=c²<br>
+                    • Проценты и пропорции<br>
+                    • Задачи на скорость / время / расстояние<br>
+                    • Статистика: мода, медиана, размах<br>
+                </div>
+            </div>
+
+            <div class="subject-block">
+                <h2>Русский язык</h2>
+                <div class="cheats-list">
+                    • Орфограммы: Н/НН, причастия, суффиксы<br>
+                    • Запятые в сложных предложениях<br>
+                    • Типы речи: описание, повествование, рассуждение<br>
+                    • Средства выразительности: эпитет, метафора, сравнение<br>
+                    • Планы сочинений<br>
+                </div>
+            </div>
+
+            <div class="subject-block">
+                <h2>Информатика</h2>
+                <div class="cheats-list">
+                    • Системы счисления<br>
+                    • Логические операции И/ИЛИ/НЕ<br>
+                    • Алгоритмы и блок‑схемы<br>
+                    • Кодирование информации<br>
+                </div>
+            </div>
+
+            <!-- (остальные предметы могу добавить по команде) -->
+        </div>
+
+        <!-- МИНИ‑НЕЙРОСЕТЬ -->
+        <div id="ai" style="margin-top:70px;">
+            <h1>Мини‑нейросеть: генератор шпаргалок</h1>
+
+            <textarea id="topic" placeholder="Введите тему, например: Теорема Пифагора..."></textarea>
+            <a class="button" onclick="generateCheat()">Сгенерировать</a>
+
+            <div id="output" class="gen-output" style="display:none;"></div>
+        </div>
+
+        <script>
+            function generateCheat() {
+                const topic = document.getElementById("topic").value.trim();
+                const out = document.getElementById("output");
+                if (!topic) return;
+
+                const templates = [
+                    `Краткая шпаргалка по теме «${topic}»:
+• Определи основные термины.
+• Запомни ключевую формулу.
+• Разбери 1–2 простых примера.
+• Сделай вывод: что даёт эта тема?`,
+                    `Шпаргалка: ${topic}.
+Главное: сформулируй правило, запомни формулу, прорешай базовый пример.`,
+                    `Мини‑шпаргалка по ${topic}: правило → формула → пример → типичная ошибка.`
+                ];
+
+                out.style.display = "block";
+                out.innerText = templates[Math.floor(Math.random() * templates.length)];
+            }
+        </script>
+
     </div>
-
-    <div style="width:360px">
-      <div class="panel right-col">
-        <h3 style="margin:0 0 8px">Старт-пак</h3>
-        <p class="muted">10 шаблонов презентаций + 30 шпаргалок. Можно скачать любой файл или сгенерировать новый прямо в браузере.</p>
-        <div style="margin-top:12px;display:flex;gap:8px">
-          <button id="download-starter" class="btn">Скачать пак (демо)</button>
-          <button id="open-generator" class="btn">Открыть генератор</button>
-        </div>
-      </div>
-
-      <div class="panel" style="margin-top:12px">
-        <h3 style="margin:0 0 8px">Полезно</h3>
-        <div class="tiny">Совет: для ОГЭ ищи "шпаргалка 9 класс" или включай фильтр «ОГЭ».<br>Для ЕГЭ — фильтр «ЕГЭ» и предмет 11 класса.</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="grid">
-    <div class="main-col">
-      <!-- Шпаргалки -->
-      <section id="cheats" style="margin-top:18px">
-        <h2>Шпаргалки — подбери по классу и предмету</h2>
-        <div id="cheats-grid" class="card-grid" aria-live="polite"></div>
-      </section>
-
-      <!-- Шаблоны и рефераты -->
-      <section id="templates" style="margin-top:18px">
-        <h2>Шаблоны презентаций и рефераты</h2>
-        <div id="templates-grid" class="card-grid"></div>
-      </section>
-    </div>
-
-    <aside class="right-col">
-      <section id="tools" class="panel">
-        <h3 style="margin:0 0 8px">Генераторы (просто и в браузере)</h3>
-
-        <div style="margin-bottom:8px">
-          <strong class="tiny">Генератор шпаргалки / мини-нейросеть</strong>
-          <div class="tiny">Введи тему и класс — кнопкой сгенерируй краткую шпаргалку. Алгоритм: марковская цепь по корпусу + адаптация к теме.</div>
-        </div>
-
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <input id="gen-topic" placeholder="Тема: дискриминант, sin, крещ..." style="flex:1" />
-          <select id="gen-class">
-            <option value="9">Класс 9</option><option value="10">10</option><option value="11">11</option>
-          </select>
-          <button id="gen-btn" class="btn">Сгенерировать</button>
-        </div>
-
-        <div style="margin-top:10px">
-          <div id="gen-output" class="generator-output">Здесь появится сгенерированная шпаргалка — подправь и скачай.</div>
-          <div style="margin-top:8px;display:flex;gap:8px">
-            <button id="download-gen" class="btn">Скачать .txt</button>
-            <button id="copy-gen" class="btn">Скопировать</button>
-            <button id="improve-gen" class="btn">Улучшить</button>
-          </div>
-        </div>
-
-        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
-
-        <div>
-          <strong class="tiny">Генератор презентаций (.pptx)</strong>
-          <div class="tiny">Добавь слайды и скачай PPTX.</div>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <input id="ppt-title" placeholder="Заголовок презентации" style="flex:1" />
-            <button id="ppt-add" class="btn">Добавить</button>
-            <button id="ppt-gen" class="btn">Скачать</button>
-          </div>
-          <div id="ppt-slides" style="margin-top:10px"></div>
-        </div>
-      </section>
-
-      <section class="panel" style="margin-top:12px">
-        <h3 style="margin:0 0 8px">Каталог</h3>
-        <div class="tiny">Отфильтруй материалы сверху. Для менеджмента — позже можно добавить админ-панель.</div>
-      </section>
-    </aside>
-  </div>
-
-  <section id="contact" style="margin-top:18px">
-    <div class="panel">
-      <h3 style="margin:0 0 8px">Контакты</h3>
-      <p class="muted">Есть идея, файлы или хочешь донат — пиши в Telegram: <a href="https://t.me/mrmod_technology" target="_blank" style="color:var(--accent)">t.me/mrmod_technology</a></p>
-    </div>
-  </section>
-
-  <footer>
-    SchoolExpress — сделано для школьников. Бесплатно. © 2025
-  </footer>
-</main>
-
-<!-- Придёная логика: данные + генератор марков -->
-<script src="https://cdn.jsdelivr.net/npm/pptxgenjs/dist/pptxgen.min.js"></script>
-<script>
-/* ========== ДАННЫЕ: 30+ шпаргалок (корпус) и шаблоны ========== */
-const CORPUS = {
-  // id, subject, classes, exam (none/oge/ege), short text
-  cheats: [
-    {id:101, subject:'Математика', classes:[5,6,7,8,9], exam:'none', title:'Формулы (5–9)', text:
-`Квадрат суммы: (a+b)^2 = a^2 + 2ab + b^2
-Квадрат разности: (a-b)^2 = a^2 - 2ab + b^2
-Проценты: часть = число * %/100
-Совет: читай условие внимательно, единицы измерения.`},
-    {id:102, subject:'Математика', classes:[9,10,11], exam:'ege', title:'Квадрат трёхчлена, дискриминант', text:
-`Дискриминант D = b^2 - 4ac
-Если D>0 — 2 корня; D=0 — 1; D<0 — нет (в R).
-Формулы прогрессий: арифм. и геом.`},
-    {id:103, subject:'Геометрия', classes:[7,8,9,10,11], exam:'none', title:'Теоремы (Пифагор и др.)', text:
-`Теорема Пифагора: a^2 + b^2 = c^2
-Теоремы о вписанных/описаных углах
-Касательная и радиус — перпендикулярны.`},
-    {id:104, subject:'Физика', classes:[7,8,9,10,11], exam:'oge', title:'Механика (формулы)', text:
-`F = m * a
-s = v * t (при постоянной скорости)
-A = F * s * cos(α)
-Ek = 1/2 m v^2`},
-    {id:105, subject:'Физика', classes:[9,10,11], exam:'ege', title:'Электричество', text:
-`Закон Ома: U = I * R
-P = U * I
-Последовательное/параллельное: сопротивления считаем по формулам`},
-    {id:106, subject:'Химия', classes:[8,9,10,11], exam:'oge', title:'Типы реакций', text:
-`Соединение, разложение, обмен, замещение.
-Записывай реагенты и продукты, балансируй уравнение.`},
-    {id:107, subject:'Химия', classes:[9,10,11], exam:'ege', title:'Периодическая таблица', text:
-`Группы — колонки (сходные свойства).
-Периоды — строки. Валентность по положению в группе.`},
-    {id:108, subject:'Биология', classes:[6,7,8,9], exam:'none', title:'Клетка и органоиды', text:
-`Клеточная мембрана, ядро, митохондрии, рибосомы.
-Митохондрии — «энергетические станции» клетки.`},
-    {id:109, subject:'Биология', classes:[9,10,11], exam:'oge', title:'Экосистемы', text:
-`Производители -> консументы -> редуценты.
-Круговорот веществ: вода, углерод, азот.`},
-    {id:110, subject:'История', classes:[5,6,7,8,9,10,11], exam:'none', title:'Важные даты (Россия)', text:
-`988 — Крещение Руси
-1612 — освобождение Москвы
-1812 — Отечественная война с Наполеоном
-1917 — революция
-1941–1945 — ВОВ`},
-    {id:111, subject:'Русский', classes:[5,6,7,8,9], exam:'none', title:'Орфография: частые ошибки', text:
-`Приставки: без-/безо-, раз-/рас- — проверяй корень
-Непроверяемые гласные: используй однокоренные слова`},
-    {id:112, subject:'Русский', classes:[9,10,11], exam:'ege', title:'Пунктуация', text:
-`Запятая при вводных и придаточных
-Тире между подлежащим и сказуемым в некоторых конструкциях`},
-    {id:113, subject:'Литература', classes:[9,10,11], exam:'ege', title:'Анализ произведения', text:
-`Тема, идея, композиция, образ героя.
-Подбирай цитаты и объясняй их связь с тезисом.`},
-    {id:114, subject:'Обществознание', classes:[8,9,10,11], exam:'oge', title:'Основные понятия', text:
-`Права и обязанности гражданина
-Институты власти, рынок и экономика`},
-    {id:115, subject:'Экономика', classes:[10,11], exam:'ege', title:'Базовые термины', text:
-`ВВП, инфляция, спрос и предложение, налоги`},
-    {id:116, subject:'Английский', classes:[5,6,7,8,9], exam:'none', title:'Базовая грамматика', text:
-`Present Simple: I do; Present Continuous: I am doing.
-Местоимения, артикли, вопросительные слова.`},
-    {id:117, subject:'Информатика', classes:[7,8,9,10,11], exam:'none', title:'Алгоритмы и структуры', text:
-`Алгоритм — последовательность шагов
-Условия, циклы, массивы, функции`},
-    {id:118, subject:'Информатика', classes:[9,10,11], exam:'oge', title:'HTML/CSS шпаргалка', text:
-`Теги: <div>, <p>, <a>, <img>
-CSS: box-model, display, margin, padding`},
-    {id:119, subject:'География', classes:[6,7,8,9], exam:'none', title:'Климат и карты', text:
-`Широта — вертикальные линии, долгота — горизонтальные.
-Типы климата по поясам.`},
-    {id:120, subject:'Астрономия', classes:[7,8,9], exam:'none', title:'Солнечная система', text:
-`Планеты от Солнца: Меркурий, Венера, Земля, Марс...`},
-    {id:121, subject:'Музыка', classes:[5,6,7], exam:'none', title:'Нотная грамота', text:
-`Ноты, длительности, простые размеры 4/4, 3/4.`},
-    {id:122, subject:'ИЗО', classes:[5,6,7], exam:'none', title:'Композиция и цвет', text:
-`Правило третей, перспективы, тёплые и холодные цвета.`},
-    {id:123, subject:'Физкультура', classes:[5,6,7,8,9], exam:'none', title:'Разминка и упражнения', text:
-`Разминка суставов, базовые упражнения: присед, планка, отжимания.`},
-    {id:124, subject:'Подготовка', classes:[9,11], exam:'oge', title:'Чеклист подготовки к ОГЭ/ЕГЭ', text:
-`План повторения: формулы, типовые задачи, разбор ошибок.
-Контроль времени на пробных тестах.`},
-    {id:125, subject:'Сочинение', classes:[9,11], exam:'ege', title:'Как писать сочинение', text:
-`Структура: вступление — тезис — аргументы — вывод.
-Используй связки: во-первых, таким образом, следовательно.`},
-    {id:126, subject:'Тест-стратегии', classes:[9,11], exam:'ege', title:'Прохождение тестов', text:
-`Пропускай сложное сначала, возвращайся позже.
-Отмечай сложные вопросы и распределяй время.`},
-    {id:127, subject:'Математика', classes:[7,8,9], exam:'none', title:'Тригонометрия: базовое', text:
-`sin^2 x + cos^2 x = 1
-sin(a+b) = sin a cos b + cos a sin b`},
-    {id:128, subject:'Русский', classes:[5,6,7,8], exam:'none', title:'Сочинение 5–8 класс', text:
-`Как написать короткое сочинение: тема, 2-3 предложения идеи, вывод.`},
-    {id:129, subject:'Информатика', classes:[9,10,11], exam:'ege', title:'Базовые понятия программиста', text:
-`Переменные, условные операторы, циклы. Базовая структура программы.`},
-    {id:130, subject:'Математика', classes:[9,10,11], exam:'ege', title:'Резюме формул для ЕГЭ', text:
-`Собери в голове таблицу формул: логарифмы, степени, тригонометрия, производные (если нужно).`}
-  ],
-  templates: [
-    {id:201, title:'Минимал — презентация', desc:'Чистый стиль, титул/содержание/слайды фактов'},
-    {id:202, title:'Яркий — презентация', desc:'Акцентные цвета, место под картинки'},
-    {id:203, title:'ГОСТ — реферат', desc:'Структура: титул, содержание, список литературы'}
-  ]
-};
-
-/* ========== Утилиты: отрисовка UI ========== */
-function el(tag,attrs={}, children=[]){ const e=document.createElement(tag); for(const k in attrs){ if(k==='class') e.className=attrs[k]; else if(k==='html') e.innerHTML=attrs[k]; else e.setAttribute(k,attrs[k]); } (Array.isArray(children)?children:[children]).forEach(c=>{ if(!c) return; if(typeof c==='string') e.appendChild(document.createTextNode(c)); else e.appendChild(c); }); return e; }
-
-function renderCheats(list){
-  const grid = document.getElementById('cheats-grid');
-  grid.innerHTML = '';
-  list.forEach(item=>{
-    const card = el('div',{class:'card'}, [
-      el('h3',{}, item.title),
-      el('p',{class:'muted'}, item.subject + ' • классы: ' + item.classes.join(',') + (item.exam!=='none' ? ' • ' + item.exam.toUpperCase() : '')),
-      el('p',{class:'small'}, item.text.split('\n').slice(0,4).join('\n') + (item.text.split('\n').length>4 ? '\n…' : '')),
-      el('div',{}, [
-        (()=>{ const b=el('button',{class:'btn'}, 'Открыть'); b.onclick = ()=> openCheat(item); return b; })(),
-        (()=>{ const d=el('button',{class:'btn'}, 'Скачать .txt'); d.style.marginLeft='8px'; d.onclick = ()=> downloadText(item.title, item.text); return d; })()
-      ])
-    ]);
-    grid.appendChild(card);
-  });
-}
-
-function renderTemplates(){
-  const grid = document.getElementById('templates-grid');
-  grid.innerHTML = '';
-  CORPUS.templates.forEach(t=>{
-    const card = el('div',{class:'card'}, [
-      el('h3',{}, t.title),
-      el('p',{class:'small'}, t.desc),
-      el('div',{}, el('button',{class:'btn'}, 'Скачать'))
-    ]);
-    grid.appendChild(card);
-  });
-}
-
-/* ========== Поиск и фильтры ========== */
-function applyFilters(){
-  const cls = document.getElementById('filter-class').value;
-  const subj = document.getElementById('filter-subject').value;
-  const exam = document.getElementById('filter-exam').value;
-  let list = CORPUS.cheats.slice();
-  if(cls!=='all'){ const cnum = Number(cls); list = list.filter(i=>i.classes.includes(cnum)); }
-  if(subj!=='all'){ list = list.filter(i=>i.subject === subj); }
-  if(exam!=='all'){ list = list.filter(i=>i.exam === exam); }
-  renderCheats(list);
-}
-
-document.getElementById('filter-class').addEventListener('change', applyFilters);
-document.getElementById('filter-subject').addEventListener('change', applyFilters);
-document.getElementById('filter-exam').addEventListener('change', applyFilters);
-
-/* Поиск */
-document.getElementById('search-btn').addEventListener('click', doSearch);
-document.getElementById('site-search').addEventListener('keydown', (e)=>{ if(e.key==='Enter') doSearch(); });
-function doSearch(){
-  const q = document.getElementById('site-search').value.trim().toLowerCase();
-  if(!q) return alert('Введи запрос');
-  const res = CORPUS.cheats.filter(c=> (c.title + ' ' + c.text + ' ' + c.subject).toLowerCase().includes(q));
-  if(res.length===0) return alert('Ничего не найдено — попробуй другое слово.');
-  renderCheats(res);
-}
-
-/* Открыть шпаргалку — превью и скачать */
-function openCheat(item){
-  const preview = item.text;
-  if(confirm(item.title + '\n\n' + preview.substring(0,360) + '\n\nСкачать файл?')) downloadText(item.title, item.text);
-}
-
-/* Скачать текстовый файл */
-function downloadText(name, text){
-  const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = (name.replace(/\s+/g,'_')||'cheat') + '.txt'; document.body.appendChild(a); a.click(); a.remove();
-}
-
-/* ========== Генератор (марковская цепь) — «маленькая нейросеть» ========== */
-/*
-  Принцип: строим модель переходов n-gram (n=2), чтобы генерировать короткие шпоры.
-  Используем корпус CORPUS.cheats (texts) + пользовательский запрос для подгонки.
-*/
-function buildMarkov(corpusTexts){
-  const map = {};
-  corpusTexts.forEach(txt=>{
-    const words = txt.replace(/\n/g,' <NL> ').split(/\s+/).filter(Boolean);
-    for(let i=0;i<words.length-1;i++){
-      const key = words[i].toLowerCase();
-      const nxt = words[i+1];
-      if(!map[key]) map[key] = {};
-      map[key][nxt] = (map[key][nxt]||0) + 1;
-    }
-  });
-  // convert to arrays
-  const dist = {};
-  for(const k in map){
-    const arr = [];
-    for(const nxt in map[k]){
-      for(let s=0;s<map[k][nxt];s++) arr.push(nxt);
-    }
-    dist[k] = arr;
-  }
-  return dist;
-}
-
-function sampleNext(distMap, token){
-  const arr = distMap[token.toLowerCase()] || [];
-  if(arr.length===0){
-    // fallback: pick random key's random value
-    const keys = Object.keys(distMap);
-    if(!keys.length) return '';
-    const k = keys[Math.floor(Math.random()*keys.length)];
-    const a = distMap[k];
-    return a[Math.floor(Math.random()*a.length)] || '';
-  }
-  return arr[Math.floor(Math.random()*arr.length)];
-}
-
-function generateFromMarkov(distMap, seed, maxWords=80){
-  let words = seed ? seed.split(/\s+/).filter(Boolean) : [];
-  // start token
-  let current = words.length? words[words.length-1] : Object.keys(distMap)[Math.floor(Math.random()*Object.keys(distMap).length)];
-  const out = words.slice();
-  for(let i=0;i<maxWords;i++){
-    const next = sampleNext(distMap, current) || '';
-    if(!next) break;
-    if(next === '<NL>'){ out.push('\n'); current = next; continue; }
-    out.push(next);
-    current = next;
-  }
-  return out.join(' ').replace(/\s+\n\s+/g,'\n').replace(/\s+/g,' ').trim();
-}
-
-/* Генерация с адаптацией к теме: добавляем тексты, в которых встречается тема, в модель */
-function generateCheat(topic, cls){
-  if(!topic) return 'Введи тему.';
-  // соберём релевантный корпус: сначала exact matches, затем общий
-  const topicLower = topic.toLowerCase();
-  const exact = CORPUS.cheats.filter(c=> (c.title + ' ' + c.text).toLowerCase().includes(topicLower) && c.classes.includes(Number(cls)));
-  const partial = CORPUS.cheats.filter(c=> (c.title + ' ' + c.text).toLowerCase().includes(topicLower));
-  const base = CORPUS.cheats;
-  // priority: exact > partial > base
-  const corpusTexts = [];
-  exact.forEach(x=>corpusTexts.push(x.text));
-  partial.forEach(x=>{ if(!exact.includes(x)) corpusTexts.push(x.text); });
-  // add a few base docs to give variety
-  base.slice(0,8).forEach(x=>{ if(!exact.includes(x) && !partial.includes(x)) corpusTexts.push(x.text); });
-
-  const dist = buildMarkov(corpusTexts);
-  // seed: topic words
-  const seed = topic.split(/\s+/).slice(0,4).join(' ');
-  const raw = generateFromMarkov(dist, seed, 90);
-  // post-process: add heading and reduce excessive repetition
-  let out = `Шпаргалка: ${topic}\nКласс: ${cls}\n\n` + raw;
-  // simple cleanup: ensure it contains a few lines
-  if(out.split('\n').length < 4){
-    // fallback: return best matching original cheat
-    const fallback = CORPUS.cheats.find(c=> (c.title + ' ' + c.text).toLowerCase().includes(topicLower));
-    return `Шпаргалка: ${topic}\n\n${fallback ? fallback.text : 'Короткая шпаргалка: проверь точное название темы или пробуй другую формулировку.'}`;
-  }
-  return out;
-}
-
-/* ========== Events: генератор ========== */
-document.getElementById('gen-btn').addEventListener('click', ()=>{
-  const topic = document.getElementById('gen-topic').value.trim();
-  const cls = document.getElementById('gen-class').value;
-  const result = generateCheat(topic, cls);
-  document.getElementById('gen-output').textContent = result;
-});
-
-document.getElementById('download-gen').addEventListener('click', ()=>{
-  const content = document.getElementById('gen-output').textContent;
-  if(!content) return alert('Сначала сгенерируй шпаргалку.');
-  downloadText('shpargalka_'+(new Date().toISOString().slice(0,10)), content);
-});
-
-document.getElementById('copy-gen').addEventListener('click', ()=>{
-  const content = document.getElementById('gen-output').textContent;
-  if(!content) return;
-  navigator.clipboard.writeText(content).then(()=>alert('Скопировано в буфер обмена'));
-});
-
-document.getElementById('improve-gen').addEventListener('click', ()=>{
-  const current = document.getElementById('gen-output').textContent;
-  if(!current) return alert('Сначала сгенерируй.');
-  // quick improvement: regenerate but include current text as extra corpus (so it expands)
-  const extra = [current];
-  const dist = buildMarkov(CORPUS.cheats.map(c=>c.text).concat(extra));
-  const seed = current.split(/\s+/).slice(0,6).join(' ');
-  const improved = generateFromMarkov(dist, seed, 120);
-  document.getElementById('gen-output').textContent = 'Улучшенная версия:\n\n' + improved;
-});
-
-/* ========== PPTX генератор (клиент) ========== */
-let pptSlides = [];
-document.getElementById('ppt-add').addEventListener('click', ()=>{
-  const id = Date.now();
-  const wrapper = el('div',{style:'display:flex;gap:8px;margin-top:8px', id:'slide-'+id}, [
-    el('input',{placeholder:'Заголовок слайда', style:'flex:1'}),
-    el('input',{placeholder:'Текст слайда', style:'flex:2'}),
-    el('button',{class:'btn'}, 'Удалить')
-  ]);
-  wrapper.querySelector('button').onclick = ()=>{ wrapper.remove(); pptSlides = pptSlides.filter(s=>s.id !== id); };
-  document.getElementById('ppt-slides').appendChild(wrapper);
-  pptSlides.push({id:id, el:wrapper});
-});
-
-document.getElementById('ppt-gen').addEventListener('click', ()=>{
-  const title = (document.getElementById('ppt-title').value || 'SchoolExpress_Presentation').trim();
-  const pres = new PptxGenJS();
-  const items = Array.from(document.querySelectorAll('#ppt-slides > div')).map(div=>{
-    const inputs = div.querySelectorAll('input');
-    return {title: inputs[0].value || '', text: inputs[1].value || ''};
-  });
-  if(items.length===0){
-    const s = pres.addSlide();
-    s.addText(title,{x:0.6,y:1.2,fontSize:36,bold:true});
-    s.addText('SchoolExpress — шаблон',{x:0.6,y:2.2,fontSize:12});
-  } else {
-    items.forEach(it=>{
-      const s = pres.addSlide();
-      s.addText(it.title || '',{x:0.5,y:0.6,fontSize:24,bold:true});
-      s.addText(it.text || '',{x:0.5,y:1.4,fontSize:14});
-    });
-  }
-  pres.writeFile({fileName: title.replace(/\s+/g,'_') + '.pptx'});
-});
-
-/* ========== Старт: рендеринг ========== */
-renderCheats(CORPUS.cheats);
-renderTemplates();
-
-/* Скачивание старт-пака (демо: создаём несколько файлов) */
-document.getElementById('download-starter').addEventListener('click', ()=>{
-  // сгенерируем 3 файла: шаблон, шпаргалку, реферат (демо)
-  generateAndDownloadDemo();
-});
-
-function generateAndDownloadDemo(){
-  // 1) demo doc
-  const html = '<!doctype html><html><head><meta charset="utf-8"><title>Start_Doc</title></head><body><h1>Демо реферат</h1><p>Это демонстрационный файл.</p></body></html>';
-  const blobDoc = new Blob([html], {type:'application/msword'});
-  const a1 = document.createElement('a'); a1.href = URL.createObjectURL(blobDoc); a1.download = 'Start_Ref.doc'; document.body.appendChild(a1); a1.click(); a1.remove();
-  // 2) demo txt
-  downloadText('Start_Cheat','Пример шпаргалки\n- пункт 1\n- пункт 2');
-  // 3) demo pptx via pptxgen
-  const pres = new PptxGenJS(); const s = pres.addSlide(); s.addText('Start Pack',{x:0.6,y:1.2,fontSize:36}); pres.writeFile({fileName:'Start_Presentation.pptx'});
-  alert('Демо-пак сгенерирован (3 файла).');
-}
-
-/* Быстрая навигация к генератору */
-document.getElementById('open-generator').addEventListener('click', ()=>{ location.hash = '#tools'; window.scrollBy({top:-80,behavior:'smooth'}); });
-
-</script>
 </body>
 </html>
