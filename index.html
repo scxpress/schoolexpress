@@ -1,231 +1,805 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SchoolExpress — Умный помощник для учёбы</title>
-    <style>
-        :root {
-            --bg: #f5f5f7;
-            --card: #ffffff;
-            --text: #1d1d1f;
-            --gray: #6e6e73;
-            --accent: #0071e3; /* стиль как у Apple */
-            --radius: 18px;
-            --shadow: 0 6px 20px rgba(0,0,0,0.08);
-        }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SchoolExpress — помощь школьникам и студентам</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' ry='20' fill='%230071e3'/%3E%3Ctext x='50' y='57' font-size='48' text-anchor='middle' font-family='-apple-system, system-ui, "Segoe UI", Roboto' fill='white'%3EM%3C/text%3E%3C/svg%3E" />
+<style>
+  /* ========= Reset & base ========= */
+  :root{
+    --bg:#f7f8fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --accent:#0071e3;
+    --radius:18px;
+    --shadow: 0 6px 18px rgba(15,23,42,0.06), 0 2px 6px rgba(15,23,42,0.04);
+    --glass: rgba(255,255,255,0.7);
+    --gap:20px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: -apple-system, "SF Pro Text", Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,var(--bg), #ffffff 60%);
+    color:#0f1724;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:40px;
+    line-height:1.45;
+  }
 
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            padding: 0;
-        }
+  /* ========= Layout ========= */
+  .container{
+    max-width:1200px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 380px;
+    gap:var(--gap);
+  }
 
-        header {
-            background: var(--card);
-            padding: 25px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+  header{
+    grid-column:1 / -1;
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+  }
+  .brand{
+    display:flex;
+    gap:14px;
+    align-items:center;
+  }
+  .logo{
+    width:56px; height:56px;
+    background:var(--accent);
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:700;
+    font-size:22px;
+    box-shadow: 0 6px 18px rgba(0,113,227,0.18);
+  }
+  h1{font-size:22px;margin:0}
+  p.lead{margin:0;color:var(--muted)}
 
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-        }
+  nav{display:flex;gap:12px; align-items:center}
+  .btn{
+    background:var(--accent);
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow: var(--shadow);
+  }
+  .btn.ghost{
+    background:transparent;color:var(--accent);
+    border:1px solid rgba(0,113,227,0.12);
+    box-shadow:none;
+  }
 
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+  /* ========= Hero ========= */
+  .hero{
+    grid-column:1 / -1;
+    display:flex;
+    gap:20px;
+    align-items:center;
+    padding:28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.9));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .hero-left{flex:1}
+  .hero h2{font-size:28px;margin:0 0 8px}
+  .sub{color:var(--muted); margin-bottom:18px}
+  .cta-row{display:flex; gap:12px; flex-wrap:wrap}
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
+  /* ========= Cards grid ========= */
+  .cards{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:16px;
+    margin-top:18px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:16px;
+    padding:18px;
+    box-shadow: var(--shadow);
+    min-height:110px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .card h3{margin:0;font-size:16px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
 
-        .subtitle {
-            font-size: 20px;
-            color: var(--gray);
-            margin-bottom: 40px;
-        }
+  /* ========= Sidebar / Right column ========= */
+  aside{
+    position:relative;
+  }
+  .panel{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:18px;
+    box-shadow: var(--shadow);
+    position:sticky;
+    top:40px;
+  }
+  .search{
+    display:flex; gap:8px;
+  }
+  .search input, .select{
+    width:100%;
+    padding:10px 12px;
+    border-radius:12px;
+    border:1px solid #e6e9ef;
+    outline:none;
+    font-size:14px;
+  }
+  .filters{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
+  /* ========= Catalog ========= */
+  .catalog{
+    grid-column:1 / -1;
+    margin-top:22px;
+  }
+  .catalog-grid{
+    display:grid;
+    grid-template-columns: 1fr 320px;
+    gap:18px;
+  }
+  .list{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:18px;
+    box-shadow: var(--shadow);
+  }
+  .subject{
+    padding:12px;
+    border-radius:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    transition:all .14s;
+    border:1px solid transparent;
+  }
+  .subject:hover{transform:translateY(-4px); border-color:#f0f3f7}
+  .subject .meta{color:var(--muted); font-size:13px}
+  .sp-list{margin-top:12px; display:grid; gap:8px}
 
-        .card {
-            background: var(--card);
-            padding: 25px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            transition: 0.2s ease;
-        }
+  /* ========= Modal / Cheat card ========= */
+  .modal{
+    position:fixed; inset:0; display:none;
+    align-items:center; justify-content:center;
+    background:rgba(8,12,20,0.35);
+    padding:28px;
+  }
+  .modal.open{display:flex}
+  .modal-card{
+    width:min(920px, 98%);
+    max-height:90vh;
+    overflow:auto;
+    background:var(--card);
+    border-radius:20px;
+    padding:24px;
+    box-shadow: 0 20px 50px rgba(15,23,42,0.25);
+  }
+  .modal-card h3{margin-top:0}
+  .tags{display:flex;gap:8px;flex-wrap:wrap}
+  .tag{background:#f1f5f9;padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
 
-        .card:hover {
-            transform: translateY(-4px);
-        }
+  /* ========= Mini NN generator ========= */
+  .gen{
+    display:grid;
+    gap:12px;
+    margin-top:12px;
+  }
+  .output{
+    border-radius:14px;
+    padding:12px;
+    background:linear-gradient(180deg,#fbfdff,#ffffff);
+    border:1px solid #eef3ff;
+  }
+  .small{font-size:13px;color:var(--muted)}
 
-        .card h3 {
-            margin-top: 0;
-            font-size: 22px;
-        }
+  /* ========= EGE / OGE materials ========= */
+  .ege-grid{display:grid; grid-template-columns: repeat(2,1fr); gap:12px}
+  .ege-card{padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid #f0f5ff}
 
-        a.button {
-            display: inline-block;
-            padding: 12px 20px;
-            background: var(--accent);
-            color: #fff;
-            text-decoration: none;
-            border-radius: var(--radius);
-            font-weight: 600;
-            margin-top: 12px;
-        }
+  /* ========= Footer ========= */
+  footer{
+    grid-column:1 / -1;
+    margin-top:28px;
+    color:var(--muted);
+    font-size:13px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+  }
 
-        .cheats-list {
-            line-height: 1.6;
-            margin-top: 10px;
-        }
+  /* ========= Responsive ========= */
+  @media (max-width:980px){
+    .container{grid-template-columns:1fr; padding:20px}
+    aside{order:2}
+    .catalog-grid{grid-template-columns:1fr}
+    .cards{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:620px){
+    body{padding:16px}
+    .cards{grid-template-columns:1fr}
+    .hero{flex-direction:column; align-items:flex-start}
+    .container{gap:14px}
+  }
 
-        .subject-block {
-            margin-bottom: 40px;
-        }
-
-        .subject-block h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 160px;
-            border-radius: var(--radius);
-            border: 1px solid #ccc;
-            padding: 14px;
-            font-size: 16px;
-        }
-
-        .gen-output {
-            background: var(--card);
-            padding: 20px;
-            border-radius: var(--radius);
-            margin-top: 20px;
-            box-shadow: var(--shadow);
-        }
-    </style>
+  /* small helpers */
+  .muted{color:var(--muted)}
+  .right{margin-left:auto}
+  .kbd{background:#f1f5f9;padding:6px 8px;border-radius:8px;font-weight:600}
+  a.inline{color:var(--accent); text-decoration:none; font-weight:600}
+</style>
 </head>
 <body>
+  <div class="container" id="app">
     <header>
-        <div class="logo">SchoolExpress</div>
+      <div class="brand">
+        <div class="logo" aria-hidden>SE</div>
+        <div>
+          <h1>SchoolExpress</h1>
+          <p class="lead">Быстрые шпаргалки, материалы ЕГЭ/ОГЭ и мини-нейросеть для школьников</p>
+        </div>
+      </div>
+      <nav>
+        <button class="btn" id="open-gen">Мини-нейросеть</button>
+        <a href="#catalog" class="btn ghost">Каталог</a>
+      </nav>
     </header>
 
-    <div class="container">
-        <h1>Учись быстрее. Готовься умнее.</h1>
-        <div class="subtitle">Шпаргалки • Презентации • Рефераты • Мини‑нейросеть</div>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <h2 id="hero-title">Учись меньше — успевай больше</h2>
+        <p class="sub">Шпаргалки, презентации, рефераты и структурированный каталог по предметам и классам — всё в одном месте.</p>
+        <div class="cta-row">
+          <button class="btn" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Перейти в каталог</button>
+          <button class="btn ghost" id="try-gen">Попробовать нейросеть</button>
+        </div>
+        <div class="cards" style="margin-top:18px">
+          <div class="card">
+            <h3>Шпаргалки</h3>
+            <p>30+ кратких шпаргалок по школьным предметам — от 5 до 11 класса, ОГЭ/ЕГЭ.</p>
+            <div class="small muted">Структура: Предмет → Класс → Список</div>
+          </div>
+          <div class="card">
+            <h3>Мини-нейросеть</h3>
+            <p>Генератор шпор по теме: вводишь тему — получаешь готовую содержание и подсказки для запоминания.</p>
+            <div class="small muted">Локальная JS-модель шаблонов + улучшения</div>
+          </div>
+          <div class="card">
+            <h3>Материалы ЕГЭ/ОГЭ</h3>
+            <p>Краткие теории, формулы и советы по подготовке к экзаменам.</p>
+            <div class="small muted">Фокус на ключевых разделах и трюках</div>
+          </div>
+        </div>
+      </div>
 
-        <div class="grid">
-            <div class="card">
-                <h3>Готовые шпаргалки</h3>
-                <p>30+ реальных шпор по всем основным предметам.</p>
-                <a href="#cheats" class="button">Открыть</a>
-            </div>
+      <aside>
+        <div class="panel" role="search">
+          <div style="display:flex;gap:10px;align-items:center">
+            <input id="q" class="search-input" placeholder="Поиск шпаргалки, предмет или тема" />
+            <button class="btn ghost" id="searchBtn">Найти</button>
+          </div>
+          <div class="filters">
+            <select id="filter-class" class="select">
+              <option value="all">Все классы</option>
+              <option value="5">5 класс</option>
+              <option value="6">6 класс</option>
+              <option value="7">7 класс</option>
+              <option value="8">8 класс</option>
+              <option value="9">9 класс</option>
+              <option value="10">10 класс</option>
+              <option value="11">11 класс</option>
+            </select>
+            <select id="filter-subject" class="select">
+              <option value="all">Все предметы</option>
+            </select>
+          </div>
 
-            <div class="card">
-                <h3>Мини‑нейросеть</h3>
-                <p>Генерирует собственные шпаргалки по теме.</p>
-                <a href="#ai" class="button">Попробовать</a>
-            </div>
+          <hr style="margin:12px 0;border:none;border-top:1px solid #eef2f7" />
 
-            <div class="card">
-                <h3>Материалы ЕГЭ/ОГЭ</h3>
-                <p>По предметам и классам.</p>
-                <a href="#ege" class="button">Открыть</a>
+          <div>
+            <strong>Попробуй тему:</strong>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+              <button class="btn ghost sample" data-topic="Параграфы по грамматике английского">Англ. грамматика</button>
+              <button class="btn ghost sample" data-topic="Формулы по тригонометрии">Тригонометрия</button>
+              <button class="btn ghost sample" data-topic="Ключевые даты по истории 20 века">История</button>
             </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Catalog -->
+    <section id="catalog" class="catalog">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px">
+        <h2 style="margin:0">Каталог шпаргалок</h2>
+        <div class="small muted">Организация по предметам и классам (5–11)</div>
+      </div>
+
+      <div class="catalog-grid">
+        <div class="list" id="subjects-list" aria-live="polite">
+          <!-- subjects populated by JS -->
         </div>
 
-        <!-- БЛОК ШПАРГАЛОК -->
-        <div id="cheats" style="margin-top:70px;">
-            <h1>Шпаргалки</h1>
-
-            <div class="subject-block">
-                <h2>Математика (ОГЭ + школа)</h2>
-                <div class="cheats-list">
-                    • Формулы сокращённого умножения<br>
-                    • Квадратное уравнение: ax²+bx+c=0, дискриминант D=b²−4ac<br>
-                    • Площади фигур: треугольник, круг, трапеция<br>
-                    • Теорема Пифагора: a²+b²=c²<br>
-                    • Проценты и пропорции<br>
-                    • Задачи на скорость / время / расстояние<br>
-                    • Статистика: мода, медиана, размах<br>
-                </div>
+        <div class="list">
+          <h3 style="margin-top:0">Мини-нейросеть</h3>
+          <div class="gen">
+            <label class="small">Тема (например: "Производная функции", "Периодическая таблица", "Англ. времена")</label>
+            <input id="gen-topic" placeholder="Введи тему для шпаргалки" />
+            <div style="display:flex;gap:8px">
+              <button class="btn" id="gen-btn">Сгенерировать шпаргалку</button>
+              <button class="btn ghost" id="gen-improve">Авто-оптимизация</button>
             </div>
-
-            <div class="subject-block">
-                <h2>Русский язык</h2>
-                <div class="cheats-list">
-                    • Орфограммы: Н/НН, причастия, суффиксы<br>
-                    • Запятые в сложных предложениях<br>
-                    • Типы речи: описание, повествование, рассуждение<br>
-                    • Средства выразительности: эпитет, метафора, сравнение<br>
-                    • Планы сочинений<br>
-                </div>
+            <div id="gen-output" class="output" aria-live="polite">
+              <div class="small muted">Результат появится здесь после генерации.</div>
             </div>
-
-            <div class="subject-block">
-                <h2>Информатика</h2>
-                <div class="cheats-list">
-                    • Системы счисления<br>
-                    • Логические операции И/ИЛИ/НЕ<br>
-                    • Алгоритмы и блок‑схемы<br>
-                    • Кодирование информации<br>
-                </div>
+            <div style="margin-top:8px">
+              <div class="small muted">Нейросеть анализирует длину, структуру и читабельность и сама предлагает улучшения.</div>
             </div>
+          </div>
 
-            <!-- (остальные предметы могу добавить по команде) -->
+          <hr style="margin:12px 0;border:none;border-top:1px solid #eef2f7" />
+
+          <h4>Материалы ОГЭ / ЕГЭ</h4>
+          <div class="ege-grid" id="ege-area">
+            <!-- EGE cards populated by JS -->
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- МИНИ‑НЕЙРОСЕТЬ -->
-        <div id="ai" style="margin-top:70px;">
-            <h1>Мини‑нейросеть: генератор шпаргалок</h1>
-
-            <textarea id="topic" placeholder="Введите тему, например: Теорема Пифагора..."></textarea>
-            <a class="button" onclick="generateCheat()">Сгенерировать</a>
-
-            <div id="output" class="gen-output" style="display:none;"></div>
-        </div>
-
-        <script>
-            function generateCheat() {
-                const topic = document.getElementById("topic").value.trim();
-                const out = document.getElementById("output");
-                if (!topic) return;
-
-                const templates = [
-                    `Краткая шпаргалка по теме «${topic}»:
-• Определи основные термины.
-• Запомни ключевую формулу.
-• Разбери 1–2 простых примера.
-• Сделай вывод: что даёт эта тема?`,
-                    `Шпаргалка: ${topic}.
-Главное: сформулируй правило, запомни формулу, прорешай базовый пример.`,
-                    `Мини‑шпаргалка по ${topic}: правило → формула → пример → типичная ошибка.`
-                ];
-
-                out.style.display = "block";
-                out.innerText = templates[Math.floor(Math.random() * templates.length)];
-            }
-        </script>
-
+    <!-- Modal -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-card" id="modal-card">
+        <button class="btn ghost right" id="close-modal">Закрыть</button>
+        <h3 id="modal-title">Шпаргалка</h3>
+        <div id="modal-body"></div>
+        <div style="margin-top:12px" id="modal-tags" class="tags"></div>
+      </div>
     </div>
+
+    <footer>
+      <div>© <strong>SchoolExpress</strong> — инструменты для учебы, 2025</div>
+      <div class="muted">Сделано стильно и минималистично • Акцент: <span class="kbd">#0071e3</span></div>
+    </footer>
+  </div>
+
+<script>
+/* =========================
+   Data: шпаргалки (>=30)
+   Структура: {id, subject, classes:[], title, content, tags}
+   ========================= */
+const CHEATS = [
+  {id:1, subject:'Математика', classes:[9,10,11], title:'Производная — кратко', content:
+   `Определение: f'(x)=lim_{h->0} (f(x+h)-f(x))/h.
+Частые производные:
+const: 0; x^n: n*x^{n-1}; e^x: e^x; ln x:1/x.
+Правила: сумма, произведение (uv)'=u'v+uv', частное (u/v)'=(u'v-uv')/v^2.
+Цепное правило: (f(g(x)))'=f'(g(x))*g'(x).
+Примеры и заметки: искать точки экстремума по f'=0.`},
+  {id:2, subject:'Математика', classes:[8,9], title:'Квадратные уравнения', content:
+   `Общий вид: ax^2+bx+c=0. Дискриминант: D=b^2-4ac.
+Если D<0 — нет действительных корней; D=0 — один корень x=-b/(2a); D>0 — два корня (-b±√D)/(2a).
+Формулы приведения и разложения на множители.`},
+  {id:3, subject:'Математика', classes:[7,8], title:'Основы функции', content:
+   `Функция y=f(x): область определения, значение. Линейная: y=kx+b — график прямая.
+Понятие монотонности, нуля функции, промежутков возрастания/убывания.`},
+  {id:4, subject:'Геометрия', classes:[7,8,9], title:'Прямоугольный треугольник', content:
+   `Теорема Пифагора: a^2+b^2=c^2.
+Соотношения в прямоугольном треугольнике: синус, косинус, тангенс.
+Построение высоты и формулы площади S=1/2 ab sin γ.`},
+  {id:5, subject:'Физика', classes:[9,10,11], title:'Механика — базовые формулы', content:
+   `Скорость v=s/t. Ускорение a=Δv/Δt.
+Закон Ньютона: F=ma. Работа A=F*s*cosα.
+Энергия: кинетическая Ek=1/2 mv^2, потенциальная Ep=mgh.`},
+  {id:6, subject:'Физика', classes:[11], title:'Электростатика — формулы', content:
+   `Закон Кулона: F=k q1 q2 / r^2.
+Поля: E=F/q. Напряженность, потенциал. Соотношение для конденсатора C=Q/U.`},
+  {id:7, subject:'Химия', classes:[8,9,10,11], title:'Периодическая таблица — подсказки', content:
+   `Группы и периоды. Металлы/неметаллы. Валентность по группе.
+Частые реакции: окисление-восстановление, кислотно-основные реакции.`},
+  {id:8, subject:'Химия', classes:[9,11], title:'Растворы и концентрации', content:
+   `Молярность: n = m/M, C = n/V.
+Концентрация массовая: ω = m_р/m_р-ра.
+pH: pH = -log[H+].`},
+  {id:9, subject:'Биология', classes:[7,8,9], title:'Клетка — основные части', content:
+   `Клеточная мембрана, цитоплазма, ядро, митохондрии, рибосомы.
+Разница между растительной и животной клеткой: клеточная стенка, хлоропласты, вакуоли.`},
+  {id:10, subject:'Биология', classes:[10,11], title:'ДНК и РНК — кратко', content:
+   `Две цепи ДНК, аденин-тимин, гуанин-цитозин. РНК — одинарная, у РНК тимин заменен на урацил.
+Транскрипция -> трансляция.`},
+  {id:11, subject:'История', classes:[7,8,9,10,11], title:'Ключевые даты по истории России (кратко)', content:
+   `862 — призвание варягов.
+988 — принятие христианства.
+1613 — начало Романовых.
+1917 — Февральская и Октябрьская революции.
+1941-45 — Великая Отечественная война.
+1991 — распад СССР.`},
+  {id:12, subject:'История', classes:[9,10,11], title:'Первая мировая — тезисы', content:
+   `Причины: империализм, национализм, милитаризм, система альянсов.
+Основные фронты, версальский мир и последствия.`},
+  {id:13, subject:'Русский язык', classes:[5,6,7,8,9,10,11], title:'Орфография — часто ошибающиеся слова', content:
+   `Правописание приставок (без-/бес-, в-/во-), правописание -н- и -нн-.
+Слитно/раздельно (не с разными частями речи). Ударение в словах — учить отдельно.`},
+  {id:14, subject:'Литература', classes:[7,8,9,10,11], title:'Анализ стихотворения — чек-лист', content:
+   `1) Тема и идея. 2) Жанр, ритм, метр. 3) Художественные средства (метафора, эпитет). 4) Структура и образ говорящего.`},
+  {id:15, subject:'Английский язык', classes:[5,6,7,8,9,10,11], title:'Англ. времена — таблица', content:
+   `Present Simple: I do. Present Continuous: I am doing.
+Past Simple: I did. Present Perfect: I have done.
+Употребление и ключевые маркеры времени — кратко.`},
+  {id:16, subject:'Английский язык', classes:[9,10,11], title:'Правописание: часто путаемые слова', content:
+   `their/there/they're; your/you're; affect/effect; accept/except — разбор и примеры.`},
+  {id:17, subject:'Информатика', classes:[7,8,9,10,11], title:'Алгоритмы — основы', content:
+   `Понятия: алгоритм, псевдокод, переменная, цикл, условный оператор.
+Сложность: О(n), O(n^2) — что это значит на практике.`},
+  {id:18, subject:'Информатика', classes:[9,10,11], title:'Сети и протоколы — кратко', content:
+   `IP, DNS, HTTP/HTTPS. Различие между локальной сетью и интернетом. Основы безопасности: пароль, двухфакторка.`},
+  {id:19, subject:'География', classes:[6,7,8,9], title:'Климатические пояса — шпаргалка', content:
+   `Экваториальный, тропический, умеренный, субарктический — признаки погоды, растительности и населенности.`},
+  {id:20, subject:'Обществознание', classes:[9,10,11], title:'Права и обязанности гражданина', content:
+   `Основные права: жизнь, свобода, личная неприкосновенность, право на образование.
+Обязанности: соблюдать законы, платить налоги, защищать Отечество (по закону).`},
+  {id:21, subject:'Экономика', classes:[10,11], title:'Основы экономики — термины', content:
+   `ВВП, инфляция, спрос и предложение, рынок, дефицит/излишек — короткие определения и пример.`},
+  {id:22, subject:'Физическая культура', classes:[5,6,7,8,9], title:'Пульс — формулы', content:
+   `ЧСС покоя = 220 - возраст (приблизительно).
+Целевая зона нагрузки = 50–85% от максимума.`},
+  {id:23, subject:'Музыка', classes:[5,6,7,8], title:'Нотная грамота — основы', content:
+   `Ноты, ключи (скрипичный, басовый), длительности: целая, половинная, четверть, восьмая.`},
+  {id:24, subject:'ИЗО', classes:[5,6,7,8], title:'Цвет и композиция — кратко', content:
+   `Теплые/холодные цвета. Правило третей, акцентная точка, баланс в композиции.`},
+  {id:25, subject:'Право', classes:[10,11], title:'Конституция — главные положения', content:
+   `Государственная власть: законодательная, исполнительная, судебная.
+Права и свободы человека и гражданина.`},
+  {id:26, subject:'Логика', classes:[9,10,11], title:'Формы умозаключений', content:
+   `Индукция vs дедукция. Силлогизм: структура (большая посылка, малая, вывод). Ошибки логики: ложная двоичность, пост хок.`},
+  {id:27, subject:'Алгебра', classes:[8,9], title:'Степени и корни — быстро', content:
+   `a^m * a^n = a^{m+n}. (a^m)^n = a^{mn}. √(a*b)=√a*√b.
+Корни четной степени — требование неотрицательности.`},
+  {id:28, subject:'Тригонометрия', classes:[9,10,11], title:'Тригонометрические формулы', content:
+   `sin^2 x + cos^2 x = 1.
+sin(α±β)=sinαcosβ±cosαsinβ.
+Формулы приведения и двойного угла.`},
+  {id:29, subject:'Физика', classes:[10,11], title:'Оптика — законы', content:
+   `Закон преломления: n1 sinθ1 = n2 sinθ2.
+Отражение: угол падения = угол отражения.`},
+  {id:30, subject:'Химия', classes:[9,10], title:'Стехиометрия — кратко', content:
+   `Моль, массовые доли, расчёт по уравнениям реакций: используй массы → моли → соотношения → искомая масса.`},
+  {id:31, subject:'Русский язык', classes:[9,10,11], title:'Пунктуация — правила', content:
+   `Запятые при вводных словах, в сложносочинённых и сложноподчинённых предложениях, двоеточие перед перечислением и т.д.`},
+  {id:32, subject:'Информатика', classes:[9,10,11], title:'Базы данных — основы', content:
+   `СУБД, таблицы, ключи (первичный, внешний), нормализация и простые SQL запросы: SELECT, INSERT, UPDATE, DELETE.`},
+];
+
+/* Utility: collect unique subjects */
+const SUBJECTS = Array.from(new Set(CHEATS.map(c=>c.subject))).sort();
+
+/* Populate subject filter and subject list */
+const filterSubj = document.getElementById('filter-subject');
+SUBJECTS.forEach(s=>{
+  const opt = document.createElement('option');
+  opt.value = s; opt.textContent = s;
+  filterSubj.appendChild(opt);
+});
+
+/* Render subjects in left list with classes count */
+const subjectsList = document.getElementById('subjects-list');
+function renderSubjects(filterClass='all', search='') {
+  subjectsList.innerHTML = '';
+  SUBJECTS.forEach(subj=>{
+    const block = document.createElement('div');
+    const items = CHEATS.filter(c=>{
+      if (c.subject !== subj) return false;
+      if (filterClass !== 'all' && !c.classes.includes(Number(filterClass))) return false;
+      if (search && !(`${c.title} ${c.content} ${c.subject}`.toLowerCase().includes(search.toLowerCase()))) return false;
+      return true;
+    });
+    if (items.length===0) return;
+    const title = document.createElement('div');
+    title.className='subject';
+    title.innerHTML = `<div>
+        <strong>${subj}</strong>
+        <div class="meta small">${items.length} шпаргалок • классы: ${Array.from(new Set(items.flatMap(i=>i.classes))).sort((a,b)=>a-b).join(', ')}</div>
+      </div>
+      <div><button class="btn ghost open-subj">Открыть</button></div>`;
+    block.appendChild(title);
+
+    const list = document.createElement('div');
+    list.className='sp-list';
+    items.slice(0,8).forEach(c=>{
+      const it = document.createElement('div');
+      it.className='subject';
+      it.style.padding='10px';
+      it.innerHTML = `<div>
+          <div style="font-weight:600">${c.title}</div>
+          <div class="meta small">${c.classes.map(x=>x+' кл.').join(', ')}</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn ghost view" data-id="${c.id}">Посмотреть</button>
+        </div>`;
+      list.appendChild(it);
+    });
+    const more = document.createElement('div');
+    more.style.marginTop='8px';
+    more.innerHTML = `<button class="btn" data-sub="${subj}">Показать все ${items.length}</button>`;
+    more.querySelector('button').addEventListener('click',()=>openSubjectModal(subj, items));
+    block.appendChild(list);
+    block.appendChild(more);
+    subjectsList.appendChild(block);
+  });
+}
+
+/* Modal functions */
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalBody = document.getElementById('modal-body');
+const modalTags = document.getElementById('modal-tags');
+document.getElementById('close-modal').addEventListener('click',closeModal);
+modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
+
+function openModal(cheat){
+  modalTitle.textContent = cheat.title + ' • ' + cheat.subject;
+  modalBody.innerHTML = `<pre style="white-space:pre-wrap;font-family:inherit">${cheat.content}</pre>`;
+  modalTags.innerHTML = '';
+  cheat.tags && cheat.tags.forEach(t=>{
+    const span = document.createElement('div'); span.className='tag'; span.textContent=t;
+    modalTags.appendChild(span);
+  });
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+}
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+}
+
+/* Open full subject modal with list */
+function openSubjectModal(subj, items){
+  const fake = {title: `Все шпаргалки: ${subj}`, subject:subj, content: items.map(i=>`• ${i.title} — ${i.classes.map(x=>x+'к').join(', ')}\n`).join('\n')};
+  openModal(fake);
+}
+
+/* Wire view buttons using event delegation */
+subjectsList.addEventListener('click', (e)=>{
+  const v = e.target.closest('button.view');
+  if(v){
+    const id = Number(v.dataset.id);
+    const c = CHEATS.find(x=>x.id===id);
+    if(c) openModal(c);
+  }
+});
+
+/* Search and filters */
+const searchInput = document.getElementById('q');
+const searchBtn = document.getElementById('searchBtn');
+const classFilter = document.getElementById('filter-class');
+
+searchBtn.addEventListener('click', ()=> {
+  renderSubjects(classFilter.value, searchInput.value.trim());
+});
+classFilter.addEventListener('change', ()=> renderSubjects(classFilter.value, searchInput.value.trim()));
+filterSubj.addEventListener('change', ()=> renderSubjects(classFilter.value, searchInput.value.trim()));
+document.getElementById('try-gen').addEventListener('click', ()=> document.getElementById('gen-topic').focus());
+
+/* Populate EGE area with short cards */
+const EGE_TOPICS = [
+  {title:'Математика (ЕГЭ) — формулы', text:'Производные, интегралы, стандартные преобразования, тригонометрия. Тренируй типовые задания.'},
+  {title:'Русский язык (ЕГЭ/ОГЭ) — советы', text:'Разбор орфографии и пунктуации. Практикуй синтаксис, делай разбор предложений.'},
+  {title:'Физика (ЕГЭ) — формулы и методы', text:'Плотность, законы механики, электростатика, работа/энергия. Учись быстро составлять уравнения.'},
+  {title:'Химия (ЕГЭ) — ключевые реакции', text:'Термодинамика, кислоты/основания, стехиометрия. Тренируй расчеты по реакциям.'},
+];
+const egeArea = document.getElementById('ege-area');
+EGE_TOPICS.forEach(t=>{
+  const card = document.createElement('div'); card.className='ege-card';
+  card.innerHTML = `<strong>${t.title}</strong><div class="small muted" style="margin-top:6px">${t.text}</div>`;
+  egeArea.appendChild(card);
+});
+
+/* Initial render */
+renderSubjects();
+
+/* ========= Мини-нейросеть (локальная) =========
+   - Работает на шаблонах, ключевых словах и локальной базе CHEATS.
+   - Делает три шага: поиск похожих, объединение, оптимизация.
+   - Предлагает улучшения автоматически.
+   ============================================ */
+
+function simpleTokenizer(s){
+  return s.toLowerCase().match(/[а-яёa-z0-9]+/gi) || [];
+}
+function scoreSimilarity(topic, cheat){
+  const tksT = simpleTokenizer(topic);
+  const tksC = simpleTokenizer(cheat.title + ' ' + cheat.content);
+  let score=0;
+  tksT.forEach(w=>{
+    tksC.forEach(cw=>{ if(cw.includes(w)) score+=1; });
+  });
+  // boost by class relevance (if topic has digit)
+  const clsMatch = topic.match(/\\b(5|6|7|8|9|10|11)\\b/);
+  if(clsMatch && cheat.classes.includes(Number(clsMatch[1]))) score+=2;
+  return score;
+}
+
+/* Generate cheat: find top 3 relevant, merge and format */
+function generateCheat(topic){
+  if(!topic || topic.trim().length<2) return {title:'Пустая тема', content:'Пожалуйста, напиши тему повнятнее.'};
+  // find relevant
+  const scored = CHEATS.map(c=>({c,score:scoreSimilarity(topic,c)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+  let title = topic.trim();
+  let content = '';
+  if(scored.length===0){
+    // fallback: try to guess subject by keywords
+    let subjectGuess = 'Общее';
+    const tk = topic.toLowerCase();
+    if(/матем|алгеб|геом|триг/.test(tk)) subjectGuess='Математика';
+    if(/физ|мех|электр|опти|динамик/.test(tk)) subjectGuess='Физика';
+    if(/хим|реакц|атом|молекул/.test(tk)) subjectGuess='Химия';
+    content = `Тема: ${topic}\nКратко:\n- Определение: ...\n- Формулы/ключи: ...\n- Пример: ...\nСоветы по запоминанию:\n1) Разбей на 3 пункта\n2) Повтори через интервалы`;
+    return {title:`Шпаргалка: ${title} (${subjectGuess})`, content};
+  }
+  // merge top 3
+  const top = scored.slice(0,3).map(x=>x.c);
+  content += top.map(t=>`— ${t.title}: ${t.content.split('\\n').slice(0,3).join(' ')}\n`).join('\\n');
+  // synthesize a short structured cheat
+  const synthesis = synthesize(topic, top);
+  return {title:`Шпаргалка: ${title}`, content: synthesis};
+}
+
+/* Synthesis logic: creates structured output with definition, формулы, примеры, советы */
+function synthesize(topic, sources){
+  const def = `Определение/суть: краткое объяснение по теме "${topic}".`;
+  // collect formulas and bullets from sources
+  const bullets = [];
+  sources.forEach(s=>{
+    const lines = s.content.split('\\n').slice(0,6);
+    lines.forEach(l=>{
+      const cleaned = l.trim();
+      if(cleaned.length>8) bullets.push(cleaned);
+    });
+  });
+  const formulas = bullets.filter(b => /формул|формулы|формула|=|sin|cos|tg|√|log|lim|F=|E=|m=/.test(b)).slice(0,6);
+  const advice = [
+    'Разбей тему на 3–5 ключевых пунктов и учи по ним.',
+    'Придумай пример из жизни для каждой формулы.',
+    'Проверь себя через 24 часа и снова через 7 дней.'
+  ];
+  // compose
+  let out = `${def}\n\nКлючевые пункты:\n`;
+  bullets.slice(0,6).forEach((b,i)=> out += `${i+1}. ${b}\n`);
+  if(formulas.length){
+    out += `\nФормулы / важные факты:\n`;
+    formulas.forEach((f,i)=> out += `${i+1}. ${f}\n`);
+  }
+  out += `\nПример:\n- Прогнать шаги решения для типовой задачи.\n\nСоветы по запоминанию:\n`;
+  advice.forEach((a,i)=> out += `${i+1}. ${a}\n`);
+  return out;
+}
+
+/* Simple optimizer: makes output shorter/clearer or expands with примерами */
+function optimizeCheat(text, mode='concise'){
+  // modes: concise / expand
+  if(mode==='concise'){
+    // remove repeated lines, keep first sentence of each paragraph
+    return text.split('\\n').map(s=>{
+      const t = s.trim();
+      if(t.length===0) return '';
+      const periodIdx = t.indexOf('.');
+      return periodIdx>40 ? t.slice(0,Math.max(40,periodIdx))+ '...' : t;
+    }).join('\\n').replace(/\\n{2,}/g,'\\n\\n');
+  } else {
+    // expand: add checklist and memory trick
+    return text + '\\n\\nЧек-лист для проверки знаний:\\n- Могу объяснить тему в 2–3 предложениях.\\n- Решил 2 задачи.\\n- Придумал пример.';
+  }
+}
+
+/* UI handlers for generator */
+document.getElementById('gen-btn').addEventListener('click', ()=>{
+  const topic = document.getElementById('gen-topic').value.trim();
+  const res = generateCheat(topic);
+  showGenResult(res.title, res.content);
+});
+document.getElementById('open-gen').addEventListener('click', ()=> {
+  document.getElementById('gen-topic').focus();
+});
+document.getElementById('gen-improve').addEventListener('click', ()=>{
+  const container = document.getElementById('gen-output');
+  const current = container.getAttribute('data-last') || '';
+  if(!current){ container.innerHTML = '<div class="small muted">Сначала сгенерируй шпаргалку, потом нажми оптимизацию.</div>'; return; }
+  // choose mode based on length
+  const mode = current.length>700 ? 'concise' : 'expand';
+  const opt = optimizeCheat(current, mode);
+  showGenResult('Оптимизированная шпаргалка', opt);
+});
+
+/* Show generator result */
+function showGenResult(title, content){
+  const out = document.getElementById('gen-output');
+  out.innerHTML = `<strong>${title}</strong><pre style="white-space:pre-wrap;margin-top:8px">${content}</pre>`;
+  out.setAttribute('data-last', content);
+}
+
+/* Samples buttons */
+document.querySelectorAll('.sample').forEach(b=>{
+  b.addEventListener('click', (e)=>{
+    const t = e.currentTarget.dataset.topic;
+    document.getElementById('gen-topic').value = t;
+    document.getElementById('gen-btn').click();
+  });
+});
+
+/* Quick search on page load for direct open */
+document.addEventListener('click', (e)=>{
+  if(e.target.matches('.open-subj')) {
+    const subj = e.target.closest('.subject')?.querySelector('strong')?.textContent;
+    if(!subj) return;
+    const items = CHEATS.filter(c=>c.subject===subj);
+    openSubjectModal(subj, items);
+  }
+});
+
+/* Accessibility: view with keyboard */
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape'){ closeModal(); }
+});
+
+/* Extra: auto-suggested optimizations shown under generator after generation (small) */
+const genOutput = document.getElementById('gen-output');
+const origSetAttribute = Element.prototype.setAttribute;
+const nativeSetAttr = Element.prototype.setAttribute;
+function showSuggestionsFor(content){
+  const small = document.createElement('div');
+  small.className='small muted';
+  // quick heuristics
+  const len = content.length;
+  let sug = 'Рекомендации: ';
+  if(len>700) sug += 'Сократить до ключевых пунктов; убрать длинные примеры.';
+  else if(len<250) sug += 'Добавить пример и чек-лист для практики.';
+  else sug += 'Добавить визуальную схему или примеры задач.';
+  small.textContent = sug;
+  return small;
+}
+
+/* After generation, attach suggestion */
+const observer = new MutationObserver(()=> {
+  const content = genOutput.getAttribute('data-last') || '';
+  const existing = genOutput.querySelector('.gen-sug');
+  if(content && !existing){
+    const s = showSuggestionsFor(content);
+    s.className = 'gen-sug small muted';
+    genOutput.appendChild(s);
+  }
+});
+observer.observe(genOutput, {childList:true, subtree:true});
+
+/* Small: hook to open specific cheat by query param ?open=id */
+(function openFromQuery(){
+  try {
+    const params = new URLSearchParams(location.search);
+    const id = params.get('open');
+    if(id){
+      const c = CHEATS.find(x=>String(x.id)===String(id));
+      if(c) setTimeout(()=>openModal(c), 600);
+    }
+  } catch(e){}
+})();
+</script>
 </body>
 </html>
