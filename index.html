@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SchoolExpress — шаблоны, шпаргалки, рефераты</title>
+  <!-- Simple, clean Apple-like style. Комментарии внутри файла объясняют, как править и развернуть на GitHub Pages. -->
+  <!-- Как развернуть: создать репозиторий на GitHub, положить этот index.html в корень ветки main, включить GitHub Pages (Settings > Pages > Deploy). -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0b69ff;
+      --radius:14px;
+      color-scheme: light;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial; margin:0;background:var(--bg);color:#0f172a}
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;background:transparent}
+    .brand{font-weight:700;letter-spacing:0.4px;font-size:20px}
+    nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
+    .container{max-width:1100px;margin:28px auto;padding:0 18px}
+
+    .hero{display:flex;gap:28px;align-items:center}
+    .hero-left{flex:1}
+    .h1{font-size:36px;margin:0 0 10px}
+    .lead{color:var(--muted);margin:0 0 18px}
+    .cta{display:inline-block;padding:12px 18px;background:var(--accent);color:#fff;border-radius:10px;text-decoration:none;font-weight:600}
+
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:22px}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 20px rgba(15,23,42,0.06)}
+    .card h3{margin:0 0 8px;font-size:16px}
+    .card p{margin:0 0 12px;color:var(--muted);font-size:14px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;text-decoration:none;background:rgba(11,105,255,0.1);color:var(--accent);font-weight:700}
+
+    footer{margin-top:40px;padding:28px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media (max-width:760px){.hero{flex-direction:column}.h1{font-size:28px}}
+
+    /* small utility */
+    .center{display:flex;align-items:center;gap:10px}
+    .pill{background:#eef4ff;color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700}
+
+    /* demo download link style */
+    .download{display:inline-block;margin-top:8px;padding:10px 12px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none}
+
+    /* search */
+    .search{display:flex;gap:8px;margin-top:14px}
+    .search input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid #e6e9ef;background:#fff}
+  </style>
+</head>
+<body>
+  <!--
+    SchoolExpress — минимальный рабочий каркас.
+    Что внутри: главная секция, блоки с шаблонами, рефератами, шпаргалками и решениями.
+    Инструкции по кастомизации:
+      - поменяй текст в секциях
+      - замени ссылки на реальные файлы (внутри href="#" ставь путь к .zip или .pptx)
+      - для деплоя: GitHub Pages / Vercel / Netlify
+  -->
+  <header>
+    <div class="brand">SchoolExpress</div>
+    <nav>
+      <a href="#templates">Шаблоны</a>
+      <a href="#essays">Рефераты</a>
+      <a href="#cheats">Шпаргалки</a>
+      <a href="#solutions">Решения</a>
+      <a href="#contact">Контакт</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1 class="h1">Готовые шаблоны, шпаргалки и рефераты — быстро и аккуратно</h1>
+        <p class="lead">SchoolExpress — сборник учебных материалов: презентации, рефераты, компактные шпоры и решения задач. Всё, чтобы спасти контрольную или быстро подготовить доклад.</p>
+        <div class="center">
+          <a class="cta" href="#templates">Скачать шаблоны</a>
+          <a class="pill" href="#essays">Бесплатно</a>
+        </div>
+
+        <div class="search">
+          <input type="search" id="site-search" placeholder="Найти материал: математика, презентация, шпоры...">
+          <a class="btn" href="#">Найти</a>
+        </div>
+      </div>
+      <div style="width:360px">
+        <div class="card" style="padding:18px">
+          <h3>Промо-пакет</h3>
+          <p>10 топовых шаблонов презентаций в стиле Apple + 20 шпаргалок</p>
+          <a class="download" href="#">Скачать — 99 ₽</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="templates" style="margin-top:26px">
+      <h2>Шаблоны презентаций</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Минимал — Apple style</h3>
+          <p>Чистый шрифт, акцент на визуал, идеально для школьных докладов.</p>
+          <a class="btn" href="#">Просмотреть</a>
+        </div>
+        <div class="card">
+          <h3>Яркий — для проектов</h3>
+          <p>Подходит для конкурсов и презентаций на сцене.</p>
+          <a class="btn" href="#">Просмотреть</a>
+        </div>
+        <div class="card">
+          <h3>Классический ГОСТ</h3>
+          <p>Оформление согласно требованиям: титул, содержание, список литературы.</p>
+          <a class="btn" href="#">Просмотреть</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="essays" style="margin-top:28px">
+      <h2>Рефераты и доклады</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>История: Великая Отечественная</h3>
+          <p>Готовый реферат с планом, фактами и списком литературы.</p>
+          <a class="btn" href="#">Скачать</a>
+        </div>
+        <div class="card">
+          <h3>Биология: Экосистемы</h3>
+          <p>Структурированный доклад с иллюстрациями (путь к файлу можно добавить).</p>
+          <a class="btn" href="#">Скачать</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="cheats" style="margin-top:28px">
+      <h2>Шпаргалки</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Математика — формулы 7–9</h3>
+          <p>Короткие карточки с формулами и примером применения.</p>
+          <a class="btn" href="#">Открыть</a>
+        </div>
+        <div class="card">
+          <h3>Русский — орфография</h3>
+          <p>Быстрые правила и примеры, удобно смотреть перед тестом.</p>
+          <a class="btn" href="#">Открыть</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions" style="margin-top:28px">
+      <h2>Решения задач</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Алгебра: примеры 9 класс</h3>
+          <p>Пошаговые решения задач с объяснениями.</p>
+          <a class="btn" href="#">Открыть</a>
+        </div>
+        <div class="card">
+          <h3>Физика: задания на механику</h3>
+          <p>Типовые контрольные с разбором ответов.</p>
+          <a class="btn" href="#">Открыть</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:36px">
+      <h2>Контакты</h2>
+      <div class="card" style="max-width:720px">
+        <p>Есть идея, хочешь заказать шаблон или загрузить материалы — пиши в Telegram:</p>
+        <p><strong><a href="https://t.me/mrmod_technology" target="_blank">t.me/mrmod_technology</a></strong></p>
+        <p style="color:var(--muted);font-size:13px">Совет: чтобы принимать оплату, подключи QIWI/ЮKassa/PayPal через простой платежный лендинг (позже я покажу, как).</p>
+      </div>
+    </section>
+
+    <footer>
+      SchoolExpress — сделано для школьников. Бесплатные материалы + премиум-пакеты.
+      <div style="margin-top:8px">© SchoolExpress — <span style="color:var(--muted)">2025</span></div>
+    </footer>
+  </main>
+
+  <script>
+    // Минимальные интерактивные штуки: поиск имитация и быстрая навигация
+    document.querySelector('#site-search').addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        const q = this.value.trim();
+        if(!q) return alert('Введи запрос. Например: математика, презентация');
+        // Здесь можно реализовать реальный поиск (по JSON-индексу) — пока заглушка
+        alert('Найдено 0 результатов для: '+q+'. Пока что это демо. Я могу подключить поиск.');
+      }
+    });
+  </script>
+</body>
+</html>
