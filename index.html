@@ -110,13 +110,20 @@
             position: relative;
             font-weight: 500;
             cursor: pointer;
-            user-select: none;
             -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
         }
 
         .text-content:hover {
             background-color: rgba(245, 245, 247, 1);
             transform: scale(1.01);
+        }
+
+        .text-content:active {
+            transform: scale(0.98);
         }
 
         .buttons-container {
@@ -143,6 +150,11 @@
             box-shadow: 0 4px 14px rgba(0, 122, 255, 0.3);
             position: relative;
             overflow: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
         }
 
         .apple-button::after {
@@ -377,14 +389,24 @@
             }
         }
 
-        /* Touch improvements for mobile */
-        .apple-button, .text-content {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        /* Easter Egg Hint */
+        .easter-hint {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #86868b;
+            opacity: 0.7;
+            text-align: center;
+            width: 100%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
         }
     </style>
 </head>
@@ -398,6 +420,7 @@
         <div class="content-card">
             <div class="text-content" id="textToCopy">
                 Кирилл ща печеньки ест)
+                <div class="easter-hint">Попробуйте нажать на текст 3 раза</div>
             </div>
             
             <div class="buttons-container">
@@ -437,10 +460,29 @@
     <script>
         function copyText() {
             const textToCopy = document.getElementById('textToCopy');
-            const range = document.createRange();
-            range.selectNode(textToCopy);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
+            const text = "Кирилл ща печеньки ест)";
+            
+            // Modern approach using Clipboard API
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(function() {
+                    showNotification();
+                }).catch(function(err) {
+                    fallbackCopyText(text);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyText(text);
+            }
+        }
+
+        function fallbackCopyText(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
             
             try {
                 const successful = document.execCommand('copy');
@@ -451,7 +493,7 @@
                 console.log('Не удалось скопировать текст');
             }
             
-            window.getSelection().removeAllRanges();
+            document.body.removeChild(textArea);
         }
 
         function showNotification() {
@@ -463,32 +505,53 @@
             }, 3000);
         }
 
-        // Easter Egg functionality
-        let clickCount = 0;
-        let lastClickTime = 0;
+        // Easter Egg functionality - improved for mobile
+        let tapCount = 0;
+        let lastTapTime = 0;
         const textElement = document.getElementById('textToCopy');
         const easterModal = document.getElementById('easterModal');
 
-        textElement.addEventListener('click', function() {
+        // Use both click and touch events for maximum compatibility
+        textElement.addEventListener('click', handleEasterEgg);
+        textElement.addEventListener('touchstart', handleEasterEgg, { passive: true });
+
+        function handleEasterEgg(e) {
+            // Prevent double triggering on devices that support both touch and click
+            if (e.type === 'touchstart') {
+                e.preventDefault();
+            }
+            
             const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTapTime;
             
-            // Reset counter if clicks are too slow
-            if (currentTime - lastClickTime > 1000) {
-                clickCount = 0;
+            // Reset counter if taps are too slow (more than 1 second apart)
+            if (tapLength > 1000) {
+                tapCount = 0;
             }
             
-            clickCount++;
-            lastClickTime = currentTime;
+            tapCount++;
+            lastTapTime = currentTime;
             
-            // If clicked 3 times within 1 second
-            if (clickCount >= 3) {
+            // If tapped 3 times within 1 second
+            if (tapCount >= 3) {
                 showEasterEgg();
-                clickCount = 0;
+                tapCount = 0;
+                
+                // Optional: Add haptic feedback on mobile devices
+                if (navigator.vibrate) {
+                    navigator.vibrate(100);
+                }
             }
-        });
+        }
 
         function showEasterEgg() {
             easterModal.classList.add('active');
+            
+            // Hide the hint after easter egg is found
+            const hint = document.querySelector('.easter-hint');
+            if (hint) {
+                hint.style.display = 'none';
+            }
         }
 
         function closeEasterEgg() {
