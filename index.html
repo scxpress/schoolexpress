@@ -482,7 +482,7 @@
             let text = textToCopyElement.textContent || textToCopyElement.innerText;
             
             // Удаляем текст подсказки пасхального яйца из копируемого текста
-            text = text.replace('Попробуйте нажать на текст 3 раза', '').trim();
+            text = text.replace('Попробуйте нажать на текст 10 раз', '').trim();
             
             // Modern approach using Clipboard API
             if (navigator.clipboard && window.isSecureContext) {
@@ -555,7 +555,7 @@
             lastTapTime = currentTime;
             
             // If tapped 3 times within 1 second
-            if (tapCount >= 3) {
+            if (tapCount >= 10) {
                 showEasterEgg();
                 tapCount = 0;
                 
